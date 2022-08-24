@@ -6,11 +6,12 @@ export function NoteList({ notes, onRemoveNote }) {
             {
                 notes.map(note =>
                 <li className="note-preview" key={note.id}>
-                    <NotePreview note={note}/>
+                    <NotePreview note={note} />
                     <button>✖</button>
                     <button>🎬</button>
                     <button>📌</button>
-                    <button><img src="assets/icons/paint-board.png" /></button>
+                    {/* <input type="color" name="color" id="color" hidden/> */}
+                    <button htmlFor="color"><img src="assets/icons/paint-board.png" /></button>
                     <button onClick={()=>onRemoveNote(note.id)}><img src="assets/icons/trash.png" /></button>
                 </li>)
             }
