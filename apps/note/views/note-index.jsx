@@ -4,7 +4,7 @@ import { noteService } from '../../../services/note-service.js'
 import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
 export class NoteIndex extends React.Component {
     state = {
-        search: '',
+        txt: '',
         notes: [],
         filterBy: null,
         isBounce: false
@@ -55,14 +55,38 @@ export class NoteIndex extends React.Component {
             })
     }
 
+    handleChange = ({ target }) => {
+        const field = target.name
+        const value = target.value
+        this.setState({ [field]: value })
+    }
+
     render() {
-        const { notes } = this.state
-        const { onRemoveNote } = this
+        const { txt, notes } = this.state
+        const { onRemoveNote, handleChange } = this
         return (
             <section className="note-index main-layout">
                 <div>note app</div>
                 <NoteFilter />
-                <NoteList notes={notes} onRemoveNote={onRemoveNote} />
+                <section className="note-filter">
+            <div className="flex space-between main-input">
+                <input
+                    ref={this.inputRef}
+                    type="text"
+                    placeholder="What's on your mind.."
+                    name="txt"
+                    id="txt" value={txt}
+                    onChange={handleChange}
+                />
+                <div className="btns">
+                <button>💬</button>
+                <button><img src="assets/icons/text-stroke.png" /></button>
+                </div>
+            </div>
+
+
+        </section>
+                <NoteList notes={notes} txt={txt} onRemoveNote={onRemoveNote} />
             </section>
         )
     }
