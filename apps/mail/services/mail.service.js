@@ -1,3 +1,6 @@
+import { utilService } from '../../../services/util.service.js'
+import { storageService } from '../../../services/storage.service.js'
+
 export const mailService = {
     query,
     addMail,
@@ -8,63 +11,55 @@ export const mailService = {
 }
 
 const DB_KEY = 'mailsDB'
-const gMails = []
-/*
-    function loadMails() {
-    return [
-        {
-        id: 'e101', 
-        subject: 'Miss you!', 
-        body: 'Would love to catch up sometimes', 
-        isRead: false, 
-        sentAt : 1551133930594, 
-        to: 'momo@momo.com'
-        }
-    ]
-    }
-*/
+// const gMails = []
+
+const gLoggedinUser = { 
+    email: 'user@appsus.com', 
+    fullname: 'Mahatma Appsus' 
+}
+
 function getMails() {
-    // return query()
-    return gMails
+    return query()
+    // return gMails
 }
 
 function query() {
     let mails = _loadFromStorage()
     if (!mails) {
-        mails = createMails()
+        mails = _createMails()
         _saveToStorage(mails)
     }
-    gMails = mails
+    // gMails = mails
     return Promise.resolve(mails)
 }
 
-function getMailById(mailId) {
+function getMailById(id) {
     // if the user didn't send a mail => return Promise.resolve with null:
-    if (!mailId) return Promise.resolve(null)
+    if (!id) return Promise.resolve(null)
     const mails = _loadFromStorage()
-    const mail = mails.find(mail => mailId === mail.id)
+    const mail = mails.find(mail => id === mail.id)
     return Promise.resolve(mail)
 }
 
-function removeMail(mailId) {
+function removeMail(id) {
     let mails = _loadFromStorage()
-    mails = mails.filter(mail => mailId !== mail.id)
+    mails = mails.filter(mail => id !== mail.id)
     _saveToStorage(mails)
     return Promise.resolve()
 }
 
-function addMail(mailTitle, mailSubtitle, mailAuthors, mailPublishedDate, mailCategories) {
+function addMail(id, subject, body, isRead, to) {
     let mails = _loadFromStorage()
-    const mail = _createMail(mailTitle, mailSubtitle, mailAuthors, mailPublishedDate, mailCategories)
+    const mail = _createMail(id, subject, body, isRead, to)
     mails = [...mails, mail]
     _saveToStorage(mails)
     return Promise.resolve(mail)
 }
 
-function updateMail(mailId, listPrice) {
+function updateMail(id, subject, body, isRead, to) {
     const mails = _loadFromStorage()
-    let mail = mails.find(mail => mailId === mail.id)
-    mail = { ...mail, listPrice }
+    let mail = mails.find(mail => id === mail.id)
+    mail = _createMail(id, subject, body, isRead, to)
     _saveToStorage(mails)
     return Promise.resolve(mail)
 }
@@ -74,14 +69,19 @@ function updateMail(mailId, listPrice) {
 function _createMails() {
     const mails = []
     for (let i = 0; i < 5; i++) {
-        
+        mails.push(_createMail())
     }
     return mails
 }
 
-function _createMail() {
+function _createMail(id, subject, body, isRead, to) {
     return {
-        
+        id: id || 'Mail'+ utilService.makeId(),
+        subject: subject || 'Message' + utilService.getRandomIntInclusive(1, 100),
+        body: body || utilService.makeLorem(20),
+        isRead: isRead !== undefined? isRead: utilService.getRandomIntInclusive(0, 1)? true: false,
+        sentAt: new Date(),
+        to: to || 'momo@momo.com'
     }
 }
 

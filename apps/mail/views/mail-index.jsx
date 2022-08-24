@@ -1,11 +1,27 @@
+import { MailList } from "../cmps/mail-list.jsx";
+import { mailService } from "../services/mail.service.js";
 
 export class MailIndex extends React.Component {
-    render() {
-        return (
-            <section className="mail-index main-layout">
-            <div>mail app</div>
 
-            </section>
-        )
+    state = {
+        mails: [],
+        filterBy: null,
+        sortBy: null
+    }
+
+    componentDidMount() {
+        this.loadMails()
+    }
+
+    loadMails = () => {
+        mailService.query()
+            .then(mails => this.setState({ mails }))
+    }
+
+    render() {
+        const { mails } = this.state
+        return <section className="app main-layout">
+            <MailList mails={mails}/>
+        </section>
     }
 }
