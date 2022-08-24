@@ -1,13 +1,28 @@
 .mail-preview {
     flex-direction: column;
-    border-bottom: 1px solid gray;
 }
 
-.mail-preview div {
+.mail-preview .mail-preview-div {
     gap: 20px;
     background-color: aliceblue;
+    margin-block-end: 5px;
 }
+
+.mail-preview div.mail-subject {
+    margin-inline-start: 5px;
+} 
 
 .mail-preview div.unread {
     font-weight: bold;
 }
+
+.mail-preview button {
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    margin-inline-end: 10px;
+    border-radius: 5px;
+    background-color: red;
+}
+
+
