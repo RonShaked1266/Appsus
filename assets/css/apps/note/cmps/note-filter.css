@@ -1,0 +1,23 @@
+.note-filter {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.note-filter input {
+border: none;
+padding: 1em;
+background-color: aliceblue;
+border-radius: 10px;
+font-family: lato, sans-serif;
+font-size: 1em;
+}
+
+.main-input {
+background-color: aliceblue;
+box-shadow: 0 0 10px 0 gray;
+border-radius: 10px;
+margin-block: 10px;
+max-width: 600px;
+min-width: 450px;
+
+}
