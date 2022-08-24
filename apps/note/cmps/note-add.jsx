@@ -1,20 +1,46 @@
 import { noteService } from './../services/note.service.js'
-export class NoteAdd extends React.Component {
+const { withRouter } = ReactRouterDOM
+export class _NoteAdd extends React.Component {
     state = {
-        txt: '',
-        type: '',
+        note: {
+            txt: '',
+            type: '',
+        }
     }
 
+    // componentDidMount() {
+    //     this.loadNote()
+    // }
+
+    // componentDidUpdate() {
+    //     console.log(this.props.match.params)
+    //     this.loadNote()
+    // }
+
+    // loadNote = () => {
+    //     const { noteId } = this.props.match.params
+    //     if (!noteId) return
+    //     noteService.getById(noteId).then(note => this.setState({ note }))
+    // }
+
     onAddNote = (ev) => {
-        const { txt } = this.state
+        const { txt } = this.state.note
+        console.log(txt)
         ev.preventDefault()
         noteService.addNote(txt)
     }
+   
 
     handleChange = ({ target }) => {
         const field = target.name
         const value = target.value
-        this.setState({ [field]: value })
+        // console.log(value)
+        this.setState((prevState) => ({
+            note: {
+                ...prevState.note,
+                [field]: value
+            }
+        }))
     }
 
     render() {
@@ -41,3 +67,5 @@ export class NoteAdd extends React.Component {
         </section>
     }
 }
+
+export const NoteAdd = withRouter(_NoteAdd)

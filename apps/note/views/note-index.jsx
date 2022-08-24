@@ -1,7 +1,6 @@
 import { NoteAdd } from '../cmps/note-add.jsx'
 import { NoteList } from './../cmps/note-list.jsx'
 import { noteService } from './../services/note.service.js'
-// import { noteService } from '../../../services/note-service.js'
 import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
 export class NoteIndex extends React.Component {
     state = {        
@@ -38,7 +37,7 @@ export class NoteIndex extends React.Component {
 
     render() {
         const { notes } = this.state
-        const { onRemoveNote, handleChange } = this
+        const { onRemoveNote } = this
         return (
             <section className="note-index main-layout">
                 <div>note app</div>
