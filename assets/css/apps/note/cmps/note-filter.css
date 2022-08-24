@@ -4,13 +4,15 @@ justify-content: center;
 align-items: center;
 }
 .note-filter input {
-border: none;
-padding: 1em;
-background-color: aliceblue;
-border-radius: 10px;
-font-family: lato, sans-serif;
-font-size: 1em;
+    padding: 1em;
+    background-color: aliceblue;
+    border: none;
+    border-radius: 10px;
+    font-family: lato, sans-serif;
+    font-size: 1em;
+    width: 45%;
 }
+
 
 .main-input {
 background-color: aliceblue;
@@ -19,5 +21,4 @@ border-radius: 10px;
 margin-block: 10px;
 max-width: 600px;
 min-width: 450px;
-
 }
