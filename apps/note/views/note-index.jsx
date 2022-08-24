@@ -1,5 +1,5 @@
-import { NoteFilter } from './apps/note/cmps/note-filter.jsx'
-import { NoteList } from './apps/note/cmps/note-list.jsx'
+import { NoteFilter } from './../cmps/note-filter.jsx'
+import { NoteList } from './../cmps/note-list.jsx'
 export class NoteIndex extends React.Component {
     render() {
         return (
