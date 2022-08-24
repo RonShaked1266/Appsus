@@ -18,10 +18,6 @@ export class NoteIndex extends React.Component {
             .then((notes) => this.setState({ notes }))
     }
 
-    onAddNote = () => {
-        noteService.addNote()
-    }
-
     onRemoveNote = (noteId) => {
         noteService.remove(noteId)
             .then(() => {
@@ -38,12 +34,6 @@ export class NoteIndex extends React.Component {
                 console.log('Problem!!', err)
                 showErrorMsg('Cannot remove note')
             })
-    }
-
-    handleChange = ({ target }) => {
-        const field = target.name
-        const value = target.value
-        this.setState({ [field]: value })
     }
 
     render() {

@@ -5,6 +5,7 @@ export const noteService = {
     getById,
     query,
     remove,
+    addNote,
     
 }
 
@@ -20,28 +21,6 @@ function query() {
     return Promise.resolve(notes)
 }
 
-
-// function query(filterBy) {
-//     let notes = _loadFromStorage()
-//     if (!notes) {
-//         notes = gNotes
-//         _saveToStorage(notes)
-//     }
-
-//     if (filterBy) {
-      
-//     }
-
-//     return Promise.resolve(notes)
-// }
-
-function _saveToStorage(notes) {
-    storageService.saveToStorage(KEY, notes)
-}
-
-function _loadFromStorage() {
-    return storageService.loadFromStorage(KEY)
-}
 
 function getById(noteId) {
     if (!noteId) return Promise.resolve(null)
@@ -71,12 +50,19 @@ function _createNote(txt) {
         type: "note-txt",
         isPinned: true,
         info: {
-        txt
+            txt
         }
     }
-
+    
 }
 
+function _saveToStorage(notes) {
+    storageService.saveToStorage(KEY, notes)
+}
+
+function _loadFromStorage() {
+    return storageService.loadFromStorage(KEY)
+}
 
 
 
