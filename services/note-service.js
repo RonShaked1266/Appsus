@@ -11,18 +11,36 @@ export const noteService = {
 let gNotes
 const KEY = 'notesDB'
 
-function query(filterBy) {
+function query() {
     let notes = _loadFromStorage()
     if (!notes) {
         notes = gNotes
         _saveToStorage(notes)
     }
-
-    // if (filterBy) {
-      
-    // }
-
     return Promise.resolve(notes)
+}
+
+
+// function query(filterBy) {
+//     let notes = _loadFromStorage()
+//     if (!notes) {
+//         notes = gNotes
+//         _saveToStorage(notes)
+//     }
+
+//     if (filterBy) {
+      
+//     }
+
+//     return Promise.resolve(notes)
+// }
+
+function _saveToStorage(notes) {
+    storageService.saveToStorage(KEY, notes)
+}
+
+function _loadFromStorage() {
+    return storageService.loadFromStorage(KEY)
 }
 
 function getById(noteId) {
