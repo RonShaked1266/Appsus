@@ -24,13 +24,4 @@ img {
     object-fit: cover;
 }
 
-button {
-    width: 35px;
-    border: none;
-    background-color: transparent;
-    border-radius: 10px;
-    font-family: montserrat-bold, serif;
-    font-size: 1.2rem;
-    margin: 6px;
-}
 

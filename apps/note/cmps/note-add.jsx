@@ -1,6 +1,10 @@
-export class NoteFilter extends React.Component {
+export class NoteAdd extends React.Component {
     render() {
-        return <section className="note-filter">
+        // state = {
+        //     txt: '',
+        //     type: '',
+        // }
+        return <section className="note-add">
             <div className="flex space-between main-input">
                 <input
                     ref={this.inputRef}
