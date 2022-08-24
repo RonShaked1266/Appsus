@@ -1,0 +1,13 @@
+.mail-preview {
+    flex-direction: column;
+    border-bottom: 1px solid gray;
+}
+
+.mail-preview div {
+    gap: 20px;
+    background-color: aliceblue;
+}
+
+.mail-preview div.unread {
+    font-weight: bold;
+}
