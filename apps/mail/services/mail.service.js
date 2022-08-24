@@ -45,13 +45,13 @@ function removeMail(id) {
     let mails = _loadFromStorage()
     mails = mails.filter(mail => id !== mail.id)
     _saveToStorage(mails)
-    return Promise.resolve()
+    return Promise.resolve(mails)
 }
 
 function addMail(id, subject, body, isRead, to) {
     let mails = _loadFromStorage()
     const mail = _createMail(id, subject, body, isRead, to)
-    mails = [...mails, mail]
+    mails = [mail, ...mails]
     _saveToStorage(mails)
     return Promise.resolve(mail)
 }
