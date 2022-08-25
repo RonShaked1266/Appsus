@@ -6,6 +6,7 @@ export class NoteIndex extends React.Component {
     state = {
         notes: [],
         isBounce: false,
+        isPalette: false
     }
 
     componentDidMount() {
@@ -26,14 +27,14 @@ export class NoteIndex extends React.Component {
 
     }
 
-    onSetColor = (noteId) => {
+    onSetPalette = (noteId) => {
         // const note = this.state.notes.find(note => note.id === noteId)  
         noteService.getById(noteId)
             .then((note) => {
                 console.log('green')
                 console.log(noteId)
-                // this.setState({ bgColor: 'green' })
-                return 'green'
+                this.setState({ isPalette: true })
+                // return 'green'
             })      
     }
 
@@ -77,13 +78,13 @@ export class NoteIndex extends React.Component {
 
 
     render() {
-        const { notes } = this.state
-        const { onRemoveNote, onAddNote, onSetColor } = this
+        const { notes, isPalette } = this.state
+        const { onRemoveNote, onAddNote, onSetPalette } = this
         return (
             <section className="note-index main-layout">
                 {/* <div>note app</div> */}
                 <NoteAdd onAddNote={onAddNote}/>
-                <NoteList notes={notes} onRemoveNote={onRemoveNote} onSetColor={onSetColor} />
+                <NoteList notes={notes} onRemoveNote={onRemoveNote} onSetPalette={onSetPalette} isPalette={isPalette}/>
             </section>
         )
     }

@@ -1,6 +1,6 @@
 
-import { ColorPalette } from './color-palette.jsx'
-export function NotePreview({ note }) {
+// import { ColorPalette } from './color-palette.jsx'
+export function NotePreview({ note, isPalette }) {
     function DynamicCmp(props) {
         // console.log(props)
         // console.log(props.note)
@@ -10,6 +10,8 @@ export function NotePreview({ note }) {
                 return <NoteTxt {...props} />
             case 'note-img':
                 return <NoteImg {...props} />
+            case 'note-video':
+                return <NoteVideo {...props} />
             case 'note-todos':
                 return <NoteTodos {...props} />
         }
@@ -19,7 +21,7 @@ export function NotePreview({ note }) {
             {/* <h4>{note.id}</h4> */}
             <DynamicCmp
                 note={note} />
-                <ColorPalette note={note}/>
+               {/* { (isPalette && note.id) && <ColorPalette />} */}
         </article>
 }
 
@@ -33,6 +35,14 @@ function NoteImg({ note }) {
     return <section>
         <h4>{note.info.title}</h4>
         <img src={note.info.url} />
+    </section>
+}
+function NoteVideo({ note }) {
+    return <section>
+        <h4>{note.info.title}</h4>
+        <div className="video-play">
+        <iframe src={note.info.url}></iframe>
+        </div>
     </section>
 }
 export class NoteTodos extends React.Component {
