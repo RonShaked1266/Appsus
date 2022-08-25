@@ -14,20 +14,23 @@ export class MailIndex extends React.Component {
 	}
 
 	onRemoveMail = (id) => {
-		const { mails } = this.state
 		mailService.removeMail(id)
-			.then(removedMail => this.setState({ mails: mails.filter(mail => mail.id !== removedMail.id) }, () => this.loadMails()))
-		// .then(removedMail => this.setState(prevState => ({
-        //     ...prevState,
-		// 	mails: mails.filter(mail => mail.id !== removedMail.id)
-		// })))
-		
+		.then(mails => this.setState(prevState => ({
+            ...prevState,
+			mails
+		})))
 	}
 
 	onAddMail = () => {
 		const { mails } = this.state
-		mailService.removeMail()
-		.then(addedMail => this.setState({ mails: [addedMail, ...mails] }))
+		const subject = prompt('Enter Subject:')
+		const to = prompt('Enter a mail:')
+		const body = prompt('Enter Message:')
+		mailService.addMail(undefined, subject, body, true, to)
+		.then(addedMail => this.setState(prevState => ({
+            ...prevState,
+			mails: [addedMail, ...mails]
+		})))
 	}
 
 	loadMails = () => {
