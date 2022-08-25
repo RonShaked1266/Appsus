@@ -2,4 +2,10 @@
     padding: 10px;
     box-shadow: 0 0 10px 0 gray;
     border-radius: 10px;
+    margin-bottom: 15px;
+    min-height: 120px;
+}
+
+.note-todos button {
+    font-size: 1.2rem;
 }

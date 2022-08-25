@@ -34,6 +34,7 @@ export class NoteIndex extends React.Component {
                 showErrorMsg('Cannot remove note')
             })
     }
+    
     onAddNote = (note) => {
         console.log(note)
         noteService.addNote(note)

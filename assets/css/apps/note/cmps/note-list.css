@@ -4,25 +4,37 @@
     background-color: transparent;
     border-radius: 10px;
     font-family: montserrat-bold, serif;
-    font-size: 1.2rem;
-    margin: 6px;
+    font-size: 1.5rem;
+    margin: 3px;
 }
-.note-list ul{
+/* .note-list ul{
     list-style: none;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 15px;
     padding-inline: 10px;
-}
-/* .note-list .btns{
-    display: none;
-  
-}
-.note-list .btns:hover{
-    display: block;
-  
 } */
+.note-list ul{
+    list-style: none;
+    padding-inline: 10px;
+    column-width: 220px;
+    column-count: 2;
+    column-gap: 15px;
+    
+}
+
+.note-list .btns img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 
 .note-list .note-preview {
     flex-direction: column;
+}
+
+@media (min-width: 900px) {
+    .note-list ul{
+        column-count: 3;        
+    }   
 }

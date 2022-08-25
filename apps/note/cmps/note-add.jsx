@@ -58,7 +58,7 @@ export class _NoteAdd extends React.Component {
                     value={txt} id="txt"
                     onChange={handleChange}
                 />
-                <div className="btns">
+                <div className="btns-container">
 
                     <button htmlFor="txt" onClick={goTxt}>💬</button>
                     <input
@@ -66,10 +66,11 @@ export class _NoteAdd extends React.Component {
                         name="img" id="img"
                         src={txt}
                         hidden />
-                    <button htmlFor="img" onClick={goImg}>🔲</button>
+                    <button htmlFor="img" onClick={goImg}>🔲 </button>
+                    <button><i class="fa-regular fa-user"></i></button>
                     <button onClick={() => onAddNote(note)} >✔</button>
-            </div>
-        </form>
+                </div>
+            </form>
 
 
         </section >

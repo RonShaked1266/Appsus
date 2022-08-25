@@ -1,6 +1,6 @@
 
-export class NotePreview extends React.Component {
-    DynamicCmp = (props) => {
+export function NotePreview({ note }) {
+    function DynamicCmp(props) {
         // console.log(props)
         // console.log(props.note)
         // console.log(props.note.type)
@@ -13,17 +13,12 @@ export class NotePreview extends React.Component {
                 return <NoteTodos {...props} />
         }
     }
-
-    render() {
-        const { note } = this.props
-        const { DynamicCmp } = this
         return <article>
             {/* {note.type === 'note-txt' && <h3>{note.info.txt}</h3>} */}
             {/* <h3>{note.id}</h3> */}
             <DynamicCmp
                 note={note} />
         </article>
-    }
 }
 
 
