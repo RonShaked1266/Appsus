@@ -1,5 +1,6 @@
 .main-layout>*:not(.full) {
     max-width: 100%;
+    padding-inline: 15px;
 }
 
 @media (min-width: 540px) {
@@ -7,6 +8,7 @@
         max-width: 500px;
         margin-inline-end: auto;
         margin-inline-start: auto;
+        /* padding-inline: 0; */
     }
 }
 

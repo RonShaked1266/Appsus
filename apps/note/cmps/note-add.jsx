@@ -20,8 +20,9 @@ export class _NoteAdd extends React.Component {
             }
         }))
     }
-
+    
     goTxt = (ev) => {
+        console.log(this.state.note)
         ev.preventDefault()
         this.inputRef.current.focus()
         this.setState((prevState) => ({
@@ -41,15 +42,34 @@ export class _NoteAdd extends React.Component {
             }
         }))
     }
+    goVideo = (ev) => {
+        ev.preventDefault()
+        this.inputRef.current.focus()
+        this.setState((prevState) => ({
+            note: {
+                ...prevState.note,
+                type: 'note-video'
+            }
+        }))
+    }
+    goTodos = (ev) => {
+        ev.preventDefault()
+        this.inputRef.current.focus()
+        this.setState((prevState) => ({
+            note: {
+                ...prevState.note,
+                type: 'note-todo'
+            }
+        }))
+    }
 
     render() {
         const { note } = this.state
         const { txt, type } = this.state.note
         const { onAddNote } = this.props
-        const { handleChange, goTxt, goImg } = this
+        const { handleChange, goTxt, goImg, goVideo, goTodos } = this
         return <section className="note-add">
-            <form className="flex space-between main-input">
-                {/* onSubmit={onAddNote} */}
+            <form className="flex space-between main-input" onSubmit={() => onAddNote(note)}>
                 <input
                     ref={this.inputRef}
                     type="text"
@@ -61,6 +81,8 @@ export class _NoteAdd extends React.Component {
                 <div className="btns-container">
 
                     <button htmlFor="txt" onClick={goTxt}>💬</button>
+                    <button onClick={goVideo}>▶</button>
+                    <button onClick={goTodos}>📋</button>
                     <input
                         type="image"
                         name="img" id="img"
@@ -68,7 +90,8 @@ export class _NoteAdd extends React.Component {
                         hidden />
                     <button htmlFor="img" onClick={goImg}><img src="assets/icons/img.svg"/></button>
                     {/* <button><i class="fa-regular fa-user"></i></button> */}
-                    <button onClick={() => onAddNote(note)} ><img src="assets/icons/add.svg"/></button>
+                    <button><img src="assets/icons/add.svg"/></button>
+                    {/* <button onClick={() => onAddNote(note)} ><img src="assets/icons/add.svg"/></button> */}
                 </div>
             </form>
 

@@ -72,14 +72,30 @@ function _createNote(txt, type) {
                 }
         }
     }
+    if (type === "note-Video") {
+        return {
+            id: utilService.makeId(),
+            type: "note-video",
+            info: {
+                url: txt,
+                title: "Video Play"
+                },
+                style: {
+                backgroundColor: "#00d"
+                }
+        }
+    }
     if (type === "note-todo") {
+        const str = txt.split(' ')
+        console.log(str[0])
         return {
             id: utilService.makeId(),
             type: "note-todo",
             info: {
-                label: txt,
-                todos: [{ txt: "Driving liscence", doneAt: new Date() },
-                { txt: "Coding power", doneAt: new Date() }]
+                label: "TODOS",
+                todos: [{ txt: str[0], doneAt: new Date() },
+                { txt: str[1], doneAt: new Date() },
+                { txt: str[2], doneAt: new Date() }]
                 }
             }
     }
@@ -109,8 +125,8 @@ gNotes = [
      id: "n102",
      type: "note-img",
      info: {
-     url: "http://some-img/me",
-     title: "Bobi and Me"
+     url: "https://picsum.photos/id/237/200/300",
+     title: "My Dog"
      },
      style: {
      backgroundColor: "#00d"
@@ -118,6 +134,17 @@ gNotes = [
     },
     {
      id: "n103",
+     type: "note-video",
+     info: {
+     url: "https://www.youtube.com/embed/A_MjCqQoLLA?controls=0",
+     title: "Video play"
+     },
+     style: {
+     backgroundColor: "#00d"
+     }
+    },
+    {
+     id: "n104",
      type: "note-todos",
      info: {
      label: "Get my stuff together",
