@@ -6,11 +6,24 @@
     gap: 20px;
     background-color: aliceblue;
     margin-block-end: 5px;
+    cursor: pointer;
+    height: 100px;    
 }
 
-.mail-preview div.mail-subject {
-    margin-inline-start: 5px;
-} 
+.mail-preview .mail-preview-div>*:not(div.mail-body):not(button) {
+    width: 200px;
+}
+
+.mail-preview-div div.mail-body {
+    flex-grow: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.mail-preview div.mail-to {
+    margin-inline-start: 15px;
+}
 
 .mail-preview div.unread {
     font-weight: bold;
@@ -19,11 +32,9 @@
 .mail-preview button {
     border: none;
     cursor: pointer;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     margin-inline-end: 10px;
     border-radius: 5px;
     background-color: red;
 }
-
-

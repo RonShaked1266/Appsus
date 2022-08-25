@@ -46,6 +46,7 @@ function getMailById(id) {
     if (!id) return Promise.resolve(null)
     const mails = _loadFromStorage()
     const mail = mails.find(mail => id === mail.id)
+    console.log('mail:', mail)
     return Promise.resolve(mail)
 }
 
