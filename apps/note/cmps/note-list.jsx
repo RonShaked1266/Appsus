@@ -5,14 +5,17 @@ export function NoteList({ notes, onRemoveNote }) {
         <ul>
             {
                 notes.map(note =>
-                <li className="note-preview" key={note.id}>
+                <li className="flex space-between note-preview" key={note.id}>
                     <NotePreview note={note} />
-                    <button>✖</button>
-                    <button>🎬</button>
-                    <button>📌</button>
-                    {/* <input type="color" name="color" id="color" hidden/> */}
-                    <button htmlFor="color"><img src="assets/icons/paint-board.png" /></button>
+                    <div className="btns">
+                    <button className="pin"><img src="assets/icons/pin.svg" /></button>
                     <button onClick={()=>onRemoveNote(note.id)}><img src="assets/icons/trash.png" /></button>
+                    <button><img src="assets/icons/img.svg"/></button>
+                    <button><img src="assets/icons/contact.svg" /></button>
+                    <input type="color" className="fill-style" id="fill-style" hidden/>
+                    <button htmlFor="fill-style"><img src="assets/icons/paint-board.svg" /></button>
+                    <button><img src="assets/icons/v.svg" /></button>         
+                    </div>
                 </li>)
             }
         </ul>

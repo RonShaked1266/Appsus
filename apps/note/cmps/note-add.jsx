@@ -1,43 +1,80 @@
 import { noteService } from './../services/note.service.js'
-export class NoteAdd extends React.Component {
+const { withRouter } = ReactRouterDOM
+export class _NoteAdd extends React.Component {
     state = {
-        txt: '',
-        type: '',
+        note: {
+            txt: '',
+            type: '',
+        }
     }
 
-    onAddNote = (ev) => {
-        const { txt } = this.state
-        ev.preventDefault()
-        noteService.addNote(txt)
-    }
+    inputRef = React.createRef()
 
     handleChange = ({ target }) => {
         const field = target.name
         const value = target.value
-        this.setState({ [field]: value })
+        this.setState((prevState) => ({
+            note: {
+                ...prevState.note,
+                [field]: value
+            }
+        }))
+    }
+
+    goTxt = (ev) => {
+        ev.preventDefault()
+        this.inputRef.current.focus()
+        this.setState((prevState) => ({
+            note: {
+                ...prevState.note,
+                type: 'note-txt'
+            }
+        }))
+    }
+    goImg = (ev) => {
+        ev.preventDefault()
+        this.inputRef.current.focus()
+        this.setState((prevState) => ({
+            note: {
+                ...prevState.note,
+                type: 'note-img'
+            }
+        }))
     }
 
     render() {
-        const { txt, type } = this.state
-        const { handleChange, onAddNote } = this
+        const { note } = this.state
+        const { txt, type } = this.state.note
+        const { onAddNote } = this.props
+        const { handleChange, goTxt, goImg } = this
         return <section className="note-add">
-            <form className="flex space-between main-input" onSubmit={onAddNote}>
+            <form className="flex space-between main-input">
+                {/* onSubmit={onAddNote} */}
                 <input
-                    // ref={this.inputRef}
+                    ref={this.inputRef}
                     type="text"
                     placeholder="What's on your mind.."
                     name="txt"
                     value={txt} id="txt"
                     onChange={handleChange}
                 />
-                <div className="btns">
+                <div className="btns-container">
 
-                    <button htmlFor="txt">💬</button>
-                    <button><img src="assets/icons/text-stroke.png" /></button>
+                    <button htmlFor="txt" onClick={goTxt}>💬</button>
+                    <input
+                        type="image"
+                        name="img" id="img"
+                        src={txt}
+                        hidden />
+                    <button htmlFor="img" onClick={goImg}><img src="assets/icons/img.svg"/></button>
+                    {/* <button><i class="fa-regular fa-user"></i></button> */}
+                    <button onClick={() => onAddNote(note)} ><img src="assets/icons/add.svg"/></button>
                 </div>
             </form>
 
 
-        </section>
+        </section >
     }
 }
+
+export const NoteAdd = withRouter(_NoteAdd)

@@ -29,6 +29,10 @@ function getById(noteId) {
     return Promise.resolve(note)
 }
 
+function removeTodo(todo) {
+    
+}
+
 function remove(noteId) {
     let notes = _loadFromStorage()
     notes = notes.filter(note => note.id !== noteId)
@@ -36,22 +40,48 @@ function remove(noteId) {
     return Promise.resolve()
 }
 
-function addNote({txt}) {
+function addNote({txt, type}) {
     let notes = _loadFromStorage()
-    const note = _createNote(txt)
-    notes = [note, ...notes]
+    const newNote = _createNote(txt, type)
+    notes = [newNote, ...notes]
     _saveToStorage(notes)
-    return Promise.resolve(note)
+    return Promise.resolve(newNote)
 }
 
-function _createNote(txt) {
-    return {
-        id: utilService.makeId(),
-        type: "note-txt",
-        isPinned: true,
-        info: {
-            txt
+function _createNote(txt, type) {
+    if (type === "note-txt") {
+        return {
+            id: utilService.makeId(),
+            type: "note-txt",
+            isPinned: true,
+            info: {
+                txt
+            }
         }
+    }
+    if (type === "note-img") {
+        return {
+            id: utilService.makeId(),
+            type: "note-img",
+            info: {
+                url: txt,
+                title: "IMG"
+                },
+                style: {
+                backgroundColor: "#00d"
+                }
+        }
+    }
+    if (type === "note-todo") {
+        return {
+            id: utilService.makeId(),
+            type: "note-todo",
+            info: {
+                label: txt,
+                todos: [{ txt: "Driving liscence", doneAt: new Date() },
+                { txt: "Coding power", doneAt: new Date() }]
+                }
+            }
     }
     
 }
@@ -91,10 +121,8 @@ gNotes = [
      type: "note-todos",
      info: {
      label: "Get my stuff together",
-     todos: [
-     { txt: "Driving liscence", doneAt: null },
-     { txt: "Coding power", doneAt: 187111111 }
-     ]
+     todos: [{ txt: "Driving liscence", doneAt: null },
+     { txt: "Coding power", doneAt: 187111111 }]
      }
     }
     ];
