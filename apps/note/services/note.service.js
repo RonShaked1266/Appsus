@@ -29,6 +29,10 @@ function getById(noteId) {
     return Promise.resolve(note)
 }
 
+function removeTodo(todo) {
+    
+}
+
 function remove(noteId) {
     let notes = _loadFromStorage()
     notes = notes.filter(note => note.id !== noteId)

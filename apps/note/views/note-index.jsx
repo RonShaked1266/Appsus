@@ -17,6 +17,15 @@ export class NoteIndex extends React.Component {
             .then((notes) => this.setState({ notes }))
     }
 
+    onRemoveTodo = (todo) => {
+        noteService.removeTodo(todo)
+        .then(() => {
+
+            console.log('Removed!')
+        })
+
+    }
+
     onRemoveNote = (noteId) => {
         noteService.remove(noteId)
             .then(() => {
@@ -34,7 +43,7 @@ export class NoteIndex extends React.Component {
                 showErrorMsg('Cannot remove note')
             })
     }
-    
+
     onAddNote = (note) => {
         console.log(note)
         noteService.addNote(note)

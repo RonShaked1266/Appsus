@@ -66,9 +66,9 @@ export class _NoteAdd extends React.Component {
                         name="img" id="img"
                         src={txt}
                         hidden />
-                    <button htmlFor="img" onClick={goImg}>🔲 </button>
-                    <button><i class="fa-regular fa-user"></i></button>
-                    <button onClick={() => onAddNote(note)} >✔</button>
+                    <button htmlFor="img" onClick={goImg}><img src="assets/icons/img.svg"/></button>
+                    {/* <button><i class="fa-regular fa-user"></i></button> */}
+                    <button onClick={() => onAddNote(note)} ><img src="assets/icons/add.svg"/></button>
                 </div>
             </form>
 

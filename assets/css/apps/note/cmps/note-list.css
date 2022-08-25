@@ -1,5 +1,5 @@
 .note-list button {
-    width: 35px;
+    width: 30px;
     border: none;
     background-color: transparent;
     border-radius: 10px;
@@ -17,10 +17,23 @@
 .note-list ul{
     list-style: none;
     padding-inline: 10px;
-    column-width: 220px;
+    column-width: 230px;
     column-count: 2;
     column-gap: 15px;
     
+    
+}
+
+.note-list .pin {
+    position: absolute;
+    top: 1px;
+    left: 0;
+    /* margin-inline-end: 5px; */
+}
+
+.note-list .btns {
+    text-align: end;
+    margin-block-start: 5px;
 }
 
 .note-list .btns img{
@@ -29,9 +42,6 @@
     object-fit: cover;
 }
 
-.note-list .note-preview {
-    flex-direction: column;
-}
 
 @media (min-width: 900px) {
     .note-list ul{

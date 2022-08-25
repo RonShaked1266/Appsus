@@ -14,8 +14,8 @@ export function NotePreview({ note }) {
         }
     }
         return <article>
-            {/* {note.type === 'note-txt' && <h3>{note.info.txt}</h3>} */}
-            {/* <h3>{note.id}</h3> */}
+            {/* {note.type === 'note-txt' && <h4>{note.info.txt}</h4>} */}
+            {/* <h4>{note.id}</h4> */}
             <DynamicCmp
                 note={note} />
         </article>
@@ -24,12 +24,12 @@ export function NotePreview({ note }) {
 
 function NoteTxt({ note }) {
     return <section>
-        <h3>{note.info.txt}</h3>
+        <h4>{note.info.txt}</h4>
         </section>
 }
 function NoteImg({ note }) {
     return <section>
-        <h3>{note.info.title}</h3>
+        <h4>{note.info.title}</h4>
         <img src={note.info.url} />
     </section>
 }
@@ -37,7 +37,7 @@ export class NoteTodos extends React.Component {
     render() {
         const { note } = this.props
         return <section>
-            <h3>{note.info.label}</h3>
+            <h4>{note.info.label}</h4>
             <ul>
                 {
                     note.info.todos.map(todo =>
@@ -45,7 +45,7 @@ export class NoteTodos extends React.Component {
                             <div>{todo.txt}
                                 <br></br>Done at: {todo.doneAt}
                             </div>
-                            <button>✖</button>
+                            <button onClick={() => onRemoveTodo(todo)}>✖</button>
                         </li>)
                 }
             </ul>
