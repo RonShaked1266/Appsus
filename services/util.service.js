@@ -5,7 +5,10 @@ export const utilService = {
     getRandomColor,
     padNum,
     getDayName,
+    getDayOfMonth,
     getMonthName,
+    getSeason,
+    getTime
 }
 
 function makeId(length = 6) {
@@ -48,15 +51,61 @@ function getRandomColor() {
     return color
 }
 
+// getDayName(new Date('12/25/2021'), 'he') ->  'יום שבת'
 function getDayName(date, locale) {
-    date = new Date(date)
     return date.toLocaleDateString(locale, { weekday: 'long' })
 }
 
+function getDayOfMonth(date) {
+    console.log('typeOf date:', typeof date)
+    // return date.toString().split(' ')[2]
+    return new Date(date).toString().split(' ')[2] 
+    // currently the date var type is a string when component did mount or mail deletion -> should be a date object
+}
 
 function getMonthName(date) {
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
+    const monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
     ]
-    return monthNames[date.getMonth()]
+    console.log('typeOf date:', typeof date)
+    // return monthNames[date.getMonth()]
+    return monthNames[new Date(date).getMonth()] // currently the date var type is a string when component did mount or mail deletion -> should be a date object
+}
+
+function getSeason(month) {
+    const monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ]
+
+    switch (month) {
+        case monthNames[5]:
+        case monthNames[6]:
+        case monthNames[7]:
+            return 'summer'
+
+        case monthNames[8]:
+        case monthNames[9]:
+        case monthNames[10]:
+            return 'autumn'
+
+        case monthNames[11]:
+        case monthNames[0]:
+        case monthNames[1]:
+            return 'winter'
+
+        case monthNames[2]:
+        case monthNames[3]:
+        case monthNames[4]:
+            return 'spring';
+
+        default:
+            return 'UNKNOWN'
+    }
+
+}
+
+function getTime(date) {
+    return date.toString().split(' ')[4]
 }
