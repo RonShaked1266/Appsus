@@ -1,7 +1,12 @@
 import { MailList } from "../cmps/mail-list.jsx";
 import { mailService } from "../services/mail.service.js";
-import { utilService } from "../../../services/util.service.js";
+// import { utilService } from "../../../services/util.service.js";
 import { MailCreate } from "../cmps/mail-create.jsx";
+import { MailDetails } from "../cmps/mail-details.jsx";
+import { MailInbox } from "../cmps/mail-inbox.jsx";
+
+const Router = ReactRouterDOM.HashRouter
+const { Route, Switch } = ReactRouterDOM
 
 export class MailIndex extends React.Component {
 
@@ -51,11 +56,11 @@ export class MailIndex extends React.Component {
 			}))) // Calling a callback function that calls set state currently doesn't change it's state immediatly - for example , () => onToggleModal
 	}
 
-	onOpenMail = (id) => {
-		mailService.getMailById(id)
-			.then(mail => alert(`subject: ${mail.subject}\nto: ${mail.to}\nsentAt: ${utilService.getDayOfMonth(mail.sentAt) + ' ' + utilService.getMonthName(mail.sentAt)}\nbody: ${mail.body}`))
-			.catch(err => console.error('Error!', err))
-	}
+	// onOpenMail = (id) => {
+	// 	mailService.getMailById(id)
+	// 		.then(mail => alert(`subject: ${mail.subject}\nto: ${mail.to}\nsentAt: ${utilService.getDayOfMonth(mail.sentAt) + ' ' + utilService.getMonthName(mail.sentAt)}\nbody: ${mail.body}`))
+	// 		.catch(err => console.error('Error!', err))
+	// }
 
 	loadMails = () => {
 		mailService.query()
@@ -63,12 +68,20 @@ export class MailIndex extends React.Component {
 	}
 
 	render() {
-		const { onRemoveMail, onAddMail, onOpenMail, onToggleModal } = this
+		const { onRemoveMail, onAddMail, onToggleModal } = this
+		{/*onOpenMail, */ }
 		const { mails, isModalOpened } = this.state
-		return <section className="app main-layout">
-			{isModalOpened && <MailCreate onAddMail={onAddMail}/>}
-			<button className="btn-add-mail" onClick={onToggleModal}>Create New Mail</button>
-			{mails.length ? <MailList mails={mails} onRemoveMail={onRemoveMail} onOpenMail={onOpenMail} /> : <div>No Mails</div>}
-		</section>
+		return <Router>
+			<Switch>
+				<Route path="/mail/:mailId" component={MailDetails} />
+				<Route path="/mail" component={() => <MailInbox onAddMail={onAddMail} onToggleModal={onToggleModal} onRemoveMail={onRemoveMail} mails={mails} isModalOpened={isModalOpened}/>}/>
+				{/* <section className="app main-layout">
+					{isModalOpened && <MailCreate onAddMail={onAddMail} />}
+					<button className="btn-add-mail" onClick={onToggleModal}>Create New Mail</button>
+					{mails.length ? <MailList mails={mails} onRemoveMail={onRemoveMail} /> : <div>No Mails</div>}
+					{/*onOpenMail={onOpenMail}*/}
+				{/*</section> */}
+			</Switch>
+		</Router>
 	}
 }
