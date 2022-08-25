@@ -36,22 +36,48 @@ function remove(noteId) {
     return Promise.resolve()
 }
 
-function addNote({txt}) {
+function addNote({txt, type}) {
     let notes = _loadFromStorage()
-    const note = _createNote(txt)
-    notes = [note, ...notes]
+    const newNote = _createNote(txt, type)
+    notes = [newNote, ...notes]
     _saveToStorage(notes)
-    return Promise.resolve(note)
+    return Promise.resolve(newNote)
 }
 
-function _createNote(txt) {
-    return {
-        id: utilService.makeId(),
-        type: "note-txt",
-        isPinned: true,
-        info: {
-            txt
+function _createNote(txt, type) {
+    if (type === "note-txt") {
+        return {
+            id: utilService.makeId(),
+            type: "note-txt",
+            isPinned: true,
+            info: {
+                txt
+            }
         }
+    }
+    if (type === "note-img") {
+        return {
+            id: utilService.makeId(),
+            type: "note-img",
+            info: {
+                url: txt,
+                title: "IMG"
+                },
+                style: {
+                backgroundColor: "#00d"
+                }
+        }
+    }
+    if (type === "note-todo") {
+        return {
+            id: utilService.makeId(),
+            type: "note-todo",
+            info: {
+                label: txt,
+                todos: [{ txt: "Driving liscence", doneAt: new Date() },
+                { txt: "Coding power", doneAt: new Date() }]
+                }
+            }
     }
     
 }

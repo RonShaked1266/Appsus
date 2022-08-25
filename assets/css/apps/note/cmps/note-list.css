@@ -10,7 +10,19 @@
 .note-list ul{
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 15px;
     padding-inline: 10px;
+}
+/* .note-list .btns{
+    display: none;
+  
+}
+.note-list .btns:hover{
+    display: block;
+  
+} */
+
+.note-list .note-preview {
+    flex-direction: column;
 }

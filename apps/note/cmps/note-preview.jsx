@@ -18,7 +18,6 @@ export class NotePreview extends React.Component {
         const { note } = this.props
         const { DynamicCmp } = this
         return <article>
-
             {/* {note.type === 'note-txt' && <h3>{note.info.txt}</h3>} */}
             {/* <h3>{note.id}</h3> */}
             <DynamicCmp
@@ -29,7 +28,9 @@ export class NotePreview extends React.Component {
 
 
 function NoteTxt({ note }) {
-    return <h3>{note.info.txt}</h3>
+    return <section>
+        <h3>{note.info.txt}</h3>
+        </section>
 }
 function NoteImg({ note }) {
     return <section>

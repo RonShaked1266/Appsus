@@ -16,17 +16,20 @@ align-items: center;
 
 .note-add input {
     padding: 1em;
-    background-color: aliceblue;
+    background-color: whitesmoke;
     border: none;
     border-radius: 10px;
     font-family: lato, sans-serif;
     font-size: 1em;
     width: 45%;
 }
+/* .note-add input:focus {
+    border: none; 
+} */
 
 
 .main-input {
-background-color: aliceblue;
+background-color: whitesmoke;
 box-shadow: 0 0 10px 0 gray;
 border-radius: 10px;
 margin-block: 10px;
