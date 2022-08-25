@@ -5,7 +5,7 @@ import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.servic
 export class NoteIndex extends React.Component {
     state = {
         notes: [],
-        isBounce: false
+        isBounce: false,
     }
 
     componentDidMount() {
@@ -24,6 +24,17 @@ export class NoteIndex extends React.Component {
             console.log('Removed!')
         })
 
+    }
+
+    onSetColor = (noteId) => {
+        // const note = this.state.notes.find(note => note.id === noteId)  
+        noteService.getById(noteId)
+            .then((note) => {
+                console.log('green')
+                console.log(noteId)
+                // this.setState({ bgColor: 'green' })
+                return 'green'
+            })      
     }
 
     onRemoveNote = (noteId) => {
@@ -63,14 +74,16 @@ export class NoteIndex extends React.Component {
             })
     }
 
+
+
     render() {
         const { notes } = this.state
-        const { onRemoveNote, onAddNote } = this
+        const { onRemoveNote, onAddNote, onSetColor } = this
         return (
             <section className="note-index main-layout">
-                <div>note app</div>
+                {/* <div>note app</div> */}
                 <NoteAdd onAddNote={onAddNote}/>
-                <NoteList notes={notes} onRemoveNote={onRemoveNote} />
+                <NoteList notes={notes} onRemoveNote={onRemoveNote} onSetColor={onSetColor} />
             </section>
         )
     }

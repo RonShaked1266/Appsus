@@ -1,6 +1,4 @@
 .note-preview {
-    padding-inline-start: 35px;
-    padding-inline-end: 10px;
     padding-block-start: 10px;
     /* box-shadow: 0 0 10px 0 gray; */
     border: 1px solid lightgray;
@@ -9,9 +7,28 @@
     min-height: 120px;
     position: relative;
     flex-direction: column;
+    /* background-color: lightcoral; */
 }
 
 .note-todos button {
     font-size: 1em;
+    padding-inline-end: 0;
 }
 
+.note-preview h4 {
+    padding-inline-start: 35px;
+    padding-inline-end: 5px;
+    margin-block-end: 5px;
+}
+
+.note-preview li {
+    margin-block-end: 5px;
+    padding-inline-start: 35px;
+    padding-inline-end: 5px;
+}
+
+.note-preview .color-palette {
+    position: absolute;
+    bottom: 25px;
+    z-index: 10;
+}

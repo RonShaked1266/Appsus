@@ -16,19 +16,16 @@
 } */
 .note-list ul{
     list-style: none;
-    padding-inline: 10px;
+    padding-inline: 0;
     column-width: 230px;
     column-count: 2;
     column-gap: 15px;
-    
-    
 }
 
 .note-list .pin {
     position: absolute;
     top: 1px;
     left: 0;
-    /* margin-inline-end: 5px; */
 }
 
 .note-list .btns {
@@ -47,4 +44,8 @@
     .note-list ul{
         column-count: 3;        
     }   
+}
+
+.note-list .green {
+    background-color: lightgreen;
 }

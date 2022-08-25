@@ -36,7 +36,8 @@ align-items: center;
 background-color: white;
 box-shadow: 0 0 10px 0 gray;
 border-radius: 10px;
-margin-block: 10px;
+margin-block-start: 30px;
+margin-block-end: 15px;
 max-width: 600px;
 min-width: 450px;
 }

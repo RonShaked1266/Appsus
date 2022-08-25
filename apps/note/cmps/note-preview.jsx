@@ -1,4 +1,5 @@
 
+import { ColorPalette } from './color-palette.jsx'
 export function NotePreview({ note }) {
     function DynamicCmp(props) {
         // console.log(props)
@@ -18,6 +19,7 @@ export function NotePreview({ note }) {
             {/* <h4>{note.id}</h4> */}
             <DynamicCmp
                 note={note} />
+                <ColorPalette note={note}/>
         </article>
 }
 
