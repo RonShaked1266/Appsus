@@ -6,7 +6,8 @@ export const noteService = {
     query,
     remove,
     addNote,
-    
+    updateNote,
+
 }
 
 let gNotes
@@ -30,7 +31,7 @@ function getById(noteId) {
 }
 
 function removeTodo(todo) {
-    
+
 }
 
 function remove(noteId) {
@@ -40,7 +41,7 @@ function remove(noteId) {
     return Promise.resolve()
 }
 
-function addNote({txt, type}) {
+function addNote({ txt, type }) {
     let notes = _loadFromStorage()
     const newNote = _createNote(txt, type)
     notes = [newNote, ...notes]
@@ -48,6 +49,77 @@ function addNote({txt, type}) {
     return Promise.resolve(newNote)
 }
 
+function updateNote(note) {
+    // console.log(note)
+    // console.log(note.txt)
+    console.log(note.bgColor)
+    let notes = _loadFromStorage()
+    const noteToUpdate = _update(note)
+    console.log(noteToUpdate)
+    notes = notes.map(note => note.id === noteToUpdate.id ? noteToUpdate : note)
+    _saveToStorage(notes)
+    return Promise.resolve(noteToUpdate)
+}
+
+function _update(note) {
+    if (note.type === "note-txt") {
+        return {
+            id: note.id,
+            type: "note-txt",
+            isPinned: true,
+            info: {
+                txt: note.txt
+            },
+            style: {
+                backgroundColor: note.bgColor
+            }
+        }
+    }
+    if (note.type === "note-img") {
+        return {
+            id: note.id,
+            type: "note-img",
+            info: {
+                url: note.info.url,
+                title: note.txt
+            },
+            style: {
+                backgroundColor: note.bgColor
+            }
+        }
+    }
+    if (note.type === "note-Video") {
+        return {
+            id: note.id,
+            type: "note-video",
+            info: {
+                url: note.txt,
+                title: "Video Play"
+            },
+            style: {
+                backgroundColor: note.bgColor
+            }
+        }
+    }
+    if (note.type === "note-todo") {
+        const str = note.txt.split(' ')
+        console.log(str[0])
+        return {
+            id: note.id,
+            type: "note-todo",
+            info: {
+                label: "TODOS",
+                todos: [{ txt: str[0], doneAt: new Date() },
+                { txt: str[1], doneAt: new Date() },
+                { txt: str[2], doneAt: new Date() }]
+            },
+            style: {
+                backgroundColor: note.bgColor
+            }
+        }
+    }
+
+}
 function _createNote(txt, type) {
     if (type === "note-txt") {
         return {
@@ -56,6 +128,9 @@ function _createNote(txt, type) {
             isPinned: true,
             info: {
                 txt
+            },
+            style: {
+                backgroundColor: "blue"
             }
         }
     }
@@ -66,10 +141,10 @@ function _createNote(txt, type) {
             info: {
                 url: txt,
                 title: "IMG"
-                },
-                style: {
+            },
+            style: {
                 backgroundColor: "#00d"
-                }
+            }
         }
     }
     if (type === "note-Video") {
@@ -79,27 +154,30 @@ function _createNote(txt, type) {
             info: {
                 url: txt,
                 title: "Video Play"
-                },
-                style: {
+            },
+            style: {
                 backgroundColor: "#00d"
-                }
+            }
         }
     }
     if (type === "note-todo") {
-        const str = txt.split(' ')
+        // const str = txt.split(' ')
         console.log(str[0])
         return {
             id: utilService.makeId(),
             type: "note-todo",
             info: {
                 label: "TODOS",
-                todos: [{ txt: str[0], doneAt: new Date() },
-                { txt: str[1], doneAt: new Date() },
-                { txt: str[2], doneAt: new Date() }]
-                }
+                todos: [{ txt, doneAt: new Date() },
+                { txt, doneAt: new Date() },
+                { txt, doneAt: new Date() }]
+            },
+            style: {
+                backgroundColor: "#00d"
             }
+        }
     }
-    
+
 }
 
 function _saveToStorage(notes) {
@@ -114,42 +192,60 @@ function _loadFromStorage() {
 
 gNotes = [
     {
-     id: "n101",
-     type: "note-txt",
-     isPinned: true,
-     info: {
-     txt: "Fullstack Me Baby!"
-     }
+        id: "n101",
+        type: "note-txt",
+        isPinned: true,
+        info: {
+            txt: "Fullstack Me Baby!"
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
     },
     {
-     id: "n102",
-     type: "note-img",
-     info: {
-     url: "https://picsum.photos/id/237/200/300",
-     title: "My Dog"
-     },
-     style: {
-     backgroundColor: "#00d"
-     }
+        id: "n102",
+        type: "note-img",
+        info: {
+            url: "https://picsum.photos/id/237/200/300",
+            title: "My Dog"
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
     },
     {
-     id: "n103",
-     type: "note-video",
-     info: {
-     url: "https://www.youtube.com/embed/A_MjCqQoLLA?controls=0",
-     title: "Video play"
-     },
-     style: {
-     backgroundColor: "#00d"
-     }
+        id: "n103",
+        type: "note-video",
+        info: {
+            url: "https://www.youtube.com/embed/A_MjCqQoLLA?controls=0",
+            title: "Video play"
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
     },
     {
-     id: "n104",
-     type: "note-todos",
-     info: {
-     label: "Get my stuff together",
-     todos: [{ txt: "Driving liscence", doneAt: null },
-     { txt: "Coding power", doneAt: 187111111 }]
-     }
+        id: "n104",
+        type: "note-todos",
+        info: {
+            label: "Get my stuff together",
+            todos: [{ txt: "Driving liscence", doneAt: null },
+            { txt: "Coding power", doneAt: 187111111 }]
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
+    },
+    {
+        id: "n105",
+        type: "note-todos",
+        info: {
+            label: "Get my stuff together",
+            todos: [{ txt: "Driving liscence", doneAt: null },
+            { txt: "Coding power", doneAt: 187111111 }]
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
     }
-    ];
+];

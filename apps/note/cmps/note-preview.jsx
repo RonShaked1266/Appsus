@@ -1,5 +1,6 @@
 
 // import { ColorPalette } from './color-palette.jsx'
+
 export function NotePreview({ note, isPalette }) {
     function DynamicCmp(props) {
         // console.log(props)
@@ -16,20 +17,21 @@ export function NotePreview({ note, isPalette }) {
                 return <NoteTodos {...props} />
         }
     }
-        return <article>
+    return <article>
             {/* {note.type === 'note-txt' && <h4>{note.info.txt}</h4>} */}
             {/* <h4>{note.id}</h4> */}
             <DynamicCmp
                 note={note} />
-               {/* { (isPalette && note.id) && <ColorPalette />} */}
+            {/* { (isPalette && note.id) && <ColorPalette />} */}
         </article>
+    
 }
 
 
 function NoteTxt({ note }) {
     return <section>
         <h4>{note.info.txt}</h4>
-        </section>
+    </section>
 }
 function NoteImg({ note }) {
     return <section>
@@ -41,7 +43,7 @@ function NoteVideo({ note }) {
     return <section>
         <h4>{note.info.title}</h4>
         <div className="video-play">
-        <iframe src={note.info.url}></iframe>
+            <iframe src={note.info.url}></iframe>
         </div>
     </section>
 }

@@ -2,6 +2,7 @@ import { NoteAdd } from '../cmps/note-add.jsx'
 import { NoteList } from './../cmps/note-list.jsx'
 import { noteService } from './../services/note.service.js'
 import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
+
 export class NoteIndex extends React.Component {
     state = {
         notes: [],
@@ -58,6 +59,7 @@ export class NoteIndex extends React.Component {
 
     onAddNote = (note) => {
         console.log(note)
+        if (note.txt !== '') {
         noteService.addNote(note)
             .then((newNote) => {
                 console.log('add!')
@@ -72,16 +74,14 @@ export class NoteIndex extends React.Component {
             .catch(err => {
                 console.log('Problem!!', err)
                 showErrorMsg('Cannot add note')
-            })
+            })}
     }
-
-
 
     render() {
         const { notes, isPalette } = this.state
         const { onRemoveNote, onAddNote, onSetPalette } = this
         return (
-            <section className="note-index main-layout">
+            <section className="note-index">
                 {/* <div>note app</div> */}
                 <NoteAdd onAddNote={onAddNote}/>
                 <NoteList notes={notes} onRemoveNote={onRemoveNote} onSetPalette={onSetPalette} isPalette={isPalette}/>

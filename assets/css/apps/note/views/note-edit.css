@@ -1,0 +1,99 @@
+.note-edit {
+    margin-block: 15px;
+}
+
+.note-edit .note-preview {
+    min-height: 400px;
+}
+
+.note-edit button {
+    width: 30px;
+    border: none;
+    background-color: transparent;
+    border-radius: 10px;
+    font-family: montserrat-bold, serif;
+    font-size: 1.5rem;
+    margin: 3px;
+}
+
+.note-edit .pin {
+    position: absolute;
+    top: 1px;
+    left: 0;
+}
+
+.note-edit .btns {
+    text-align: end;
+    margin-block-start: 5px;
+}
+
+.note-edit img {
+    max-height: 600px;
+}
+
+.note-edit .btns img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.note-edit .btns-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-edit input {
+    padding: 1em;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: lato, sans-serif;
+    font-size: 1em;
+    width: 45%;
+    outline-color: white;
+    outline-width: 0;
+}
+
+.note-edit .color-palette {
+    position: absolute;
+    bottom: 25px;
+    z-index: 10;
+}
+
+.blue {
+    background-color: lightblue;
+    border-radius: 10px;
+}
+.green {
+    background-color: rgb(189, 232, 189);
+    border-radius: 10px;
+}
+.red {
+    background-color: lightcoral;
+    border-radius: 10px;
+}
+.yellow {
+    background-color: lightyellow;
+    border-radius: 10px;
+}
+.orange {
+    background-color: lightsalmon;
+    border-radius: 10px;
+}
+.purple {
+    background-color: plum;
+    border-radius: 10px;
+}
+.white {
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+@media (min-width: 900px) {
+    .note-edit {
+        width: 600px;
+    }
+
+}

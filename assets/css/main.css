@@ -13,6 +13,7 @@
 @import './views/home.css';
 @import './apps/mail/views/mail-index.css';
 @import './apps/note/views/note-index.css';
+@import './apps/note/views/note-edit.css';
 
 /* Cmps */
 
