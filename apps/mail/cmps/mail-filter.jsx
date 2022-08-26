@@ -1,10 +1,49 @@
 export class MailFilter extends React.Component {
 
     state = {
-        
+        filterBy: {
+            status: 'inbox',
+            txt: '',
+            isRead: null,
+            isStared: null,
+            lables: []
+        }
+    }
+
+    handleChange = ({ target }) => {
+        const field = target.name
+        const value = target.type === 'number' ? +target.value : target.value
+        this.setState((prevState) => ({
+            filterBy: {
+                ...prevState.filterBy,
+                [field]: value
+            }
+        }), () => {
+            this.props.onSetFilter(this.state.filterBy)
+        })
+    }
+
+    onFilter = (ev) => {
+        ev.preventDefault()
+        this.props.onSetFilter(this.state.filterBy)
     }
 
     render() {
-        return <div>Hello From Mail Filter</div>
+        const { status, txt, isRead, isStared, lables } = this.state.filterBy
+        return <section className="car-filter">
+            {/* <form onSubmit={this.onFilter}> */}
+                <label htmlFor="by-txt">Search:</label>
+                <input
+                    ref={this.inputRef}
+                    type="search"
+                    placeholder="Search.."
+                    id="by-txt"
+                    name="txt"
+                    value={txt}
+                    onChange={this.handleChange}
+                />
+                {/* <button>Filter</button> */}
+            {/* </form> */}
+        </section>
     }
 }
