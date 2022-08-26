@@ -12,7 +12,7 @@ export function MailPreview({ mail, onRemoveMail, onOpenMail }) {
     return <Link to={`/mail/${mail.id}`}>
         <div className="mail-preview-div flex align-center">
             {/* onClick={() => onOpenMail(mail.id)} */}
-            <div className={`mail-to ${getReadClass(mail)}`}>{mail.to}</div>
+            <div className={`mail-from ${getReadClass(mail)}`}>{mail.from}</div>
             <div className={`mail-subject ${getReadClass(mail)}`}>{mail.subject}</div>
             <div className={"mail-body"}>{mail.body}</div>
             {/*React Doesn't like dates objects when the component did mount! (first time) */}

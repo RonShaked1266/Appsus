@@ -9,11 +9,11 @@ export function MailInbox({ onAddMail, onToggleModal, onRemoveMail, mails, isMod
     // render() {
     // console.log('props:', props)
     // const { onAddMail, onToggleModal, onRemoveMail, mails, isModalOpened } = this.props
-    console.log('onAddMail:', onAddMail)
-    console.log('onToggleModal:', onToggleModal)
-    console.log('onRemoveMail:', onRemoveMail)
-    console.log('mails:', mails)
-    console.log('isModalOpened:', isModalOpened)
+    // console.log('onAddMail:', onAddMail)
+    // console.log('onToggleModal:', onToggleModal)
+    // console.log('onRemoveMail:', onRemoveMail)
+    // console.log('mails:', mails)
+    // console.log('isModalOpened:', isModalOpened)
     return <section className="app main-layout">
         {isModalOpened && <MailCreate onAddMail={onAddMail} />}
         <button className="btn-add-mail" onClick={onToggleModal}>Create New Mail</button>

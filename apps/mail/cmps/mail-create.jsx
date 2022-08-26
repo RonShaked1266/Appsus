@@ -18,7 +18,7 @@ export class MailCreate extends React.Component {
 
     render() {
         const { handleChange } = this
-        console.log('props:', this.props)
+        // console.log('props:', this.props)
         const { onAddMail } = this.props
         const { subject, to, body } = this.state.mail
         return <div className="modal-container">

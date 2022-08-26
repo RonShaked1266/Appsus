@@ -4,6 +4,7 @@ import { mailService } from "../services/mail.service.js";
 import { MailCreate } from "../cmps/mail-create.jsx";
 import { MailDetails } from "../cmps/mail-details.jsx";
 import { MailInbox } from "../cmps/mail-inbox.jsx";
+import { MailFilter } from "../cmps/mail-filter.jsx";
 
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
@@ -48,7 +49,7 @@ export class MailIndex extends React.Component {
 		const { mails, isModalOpened } = this.state
 		// TODO: send an object to addMail function and change it in service, also change create
 		// Immediatly Close modal!
-		mailService.addMail(undefined, subject, body, true, to)
+		mailService.addMail(undefined, subject, body, true, to, undefined)
 			.then(addedMail => this.setState(prevState => ({
 				...prevState,
 				mails: [addedMail, ...mails],
@@ -63,15 +64,20 @@ export class MailIndex extends React.Component {
 	// }
 
 	loadMails = () => {
-		mailService.query()
+		mailService.query(this.state.filterBy)
 			.then(mails => this.setState({ mails }))
 	}
 
+	onSetFilter = (filterBy) => {
+        this.setState({ filterBy }, this.loadMails)
+    }
+
 	render() {
-		const { onRemoveMail, onAddMail, onToggleModal } = this
+		const { onRemoveMail, onAddMail, onToggleModal, onSetFilter } = this
 		{/*onOpenMail, */ }
 		const { mails, isModalOpened } = this.state
 		return <Router>
+			<MailFilter onSetFilter={onSetFilter}/>
 			<Switch>
 				<Route path="/mail/:mailId" component={MailDetails} />
 				<Route path="/mail" component={() => <MailInbox onAddMail={onAddMail} onToggleModal={onToggleModal} onRemoveMail={onRemoveMail} mails={mails} isModalOpened={isModalOpened}/>}/>
