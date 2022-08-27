@@ -3,12 +3,14 @@
 }
 
 .mail-preview .mail-preview-div {
+    justify-content: center;
+    align-items: center;
     gap: 20px;
     background-color: aliceblue;
     /* margin-block-end: 5px; */
     cursor: pointer;
     height: 100px;
-    outline: 1px solid gray   
+    outline: 1px solid lightgrey   
 }
 
 .mail-preview .mail-preview-div:hover {
@@ -16,7 +18,7 @@
 }
 
 .mail-preview .mail-preview-div>*:not(div.mail-body) {
-    width: 300px;
+    /* width: 300px; */
 }
 
 .mail-preview-div div.mail-body {
@@ -46,7 +48,7 @@
     border: none;
     cursor: pointer;
     width: 30px;
-    height: 30px;
+    /* height: 30px; */
     margin-inline-end: 10px;
     border-radius: 50%;
     background-color: transparent;

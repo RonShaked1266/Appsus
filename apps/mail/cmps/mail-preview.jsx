@@ -14,7 +14,7 @@ export function MailPreview({ mail, onRemoveMail, onOpenMail }) {
     console.log('mail.sentAt:', mail.sentAt)
     console.log('typeof mail.sentAt:', typeof mail.sentAt)
     return <Link to={`/mail/${mail.id}`}>
-        <div className="mail-preview-div flex align-center">
+        <div className="mail-preview-div flex">
             {/* onClick={() => onOpenMail(mail.id)} */}
             <div className={`mail-from ${getReadClass(mail)}`}>{mail.from}</div>
             <div className={`mail-subject ${getReadClass(mail)}`}>{mail.subject}</div>

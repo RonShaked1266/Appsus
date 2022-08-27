@@ -30,8 +30,8 @@ export class MailFilter extends React.Component {
 
     render() {
         const { status, txt, isRead, isStared, lables } = this.state.filterBy
-        return <section className="mail-filter main-layout">
-            <form onSubmit={this.onFilter}>
+        return <section className="mail-filter">
+            <form className="flex space-between main-input" onSubmit={this.onFilter}>
                 {/* <label htmlFor="by-txt">Search:</label> */}
                 <input
                     ref={this.inputRef}
@@ -42,6 +42,9 @@ export class MailFilter extends React.Component {
                     value={txt}
                     onChange={this.handleChange}
                 />
+                <div className="btn-container">
+                    <button><i className="fa-solid fa-magnifying-glass"></i></button>
+                </div>
                 {/* <button>Filter</button> */}
             </form>
         </section>

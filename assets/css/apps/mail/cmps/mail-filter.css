@@ -1,4 +1,4 @@
-.mail-filter form input {
+/* .mail-filter form input {
     outline: 0px solid transparent;
     border: none;
     border-radius: 10px;
@@ -6,4 +6,50 @@
     padding: 10px;
     width: 100%;
     margin-top: 10px;
+} */
+
+.mail-filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mail-filter input {
+    padding: 0.5em;
+    background-color: rgb(237, 236, 236);
+    border: none;
+    border-radius: 10px;
+    font-family: lato, sans-serif;
+    font-size: 1em;
+    width: 55%;
+    outline-color: white;
+    outline-width: 0;
+    margin-block: 10px;
+}
+
+
+.mail-filter .btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mail-filter button {
+    width: 35px;
+    border: none;
+    background-color: transparent;
+    border-radius: 10px;
+    font-family: montserrat-bold, serif;
+    font-size: 1.2rem;
+    margin: 3px;
+}
+
+.mail-filter .main-input {
+    background-color: rgb(237, 236, 236);
+    border-radius: 10px;
+    margin-block-start: 15px;
+    margin-block-end: 15px;
+    max-width: 600px;
+    min-width: 350px;                
 }
