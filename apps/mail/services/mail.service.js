@@ -4,7 +4,7 @@ import { storageService } from '../../../services/storage.service.js'
 export const mailService = {
     query,
     addMail,
-    updateMail,
+    // updateMail,
     removeMail,
     getMails,
     getMailById,
@@ -15,7 +15,7 @@ const DB_KEY = 'mailsDB'
 
 const gLoggedinUser = {
     email: 'user@appsus.com',
-    fullname: 'Mahatma Appsus'
+    fullname: 'Appsus Appsus'
 }
 
 // const criteria = {
@@ -34,19 +34,24 @@ function getMails() {
 function query(filterBy) {
     let mails = _loadFromStorage()
     if (!mails) {
-        mails = _createMails()
+        mails = _loadFromDemo()
         _saveToStorage(mails)
     }
+
 
     if (filterBy) {
         const { status, txt, isRead, isStared, lables } = filterBy
         console.log('status:', status)
+        console.log('gLoggedinUser.email:', gLoggedinUser.email)
+        mails.forEach(mail => {
+            console.log('status === \'inbox\' && mail.to === gLoggedinUser.email:', status === 'inbox' && mail.to === gLoggedinUser.email)
+        })
         mails = mails.filter(mail => (
             mail.body.includes(txt) ||
             mail.subject.includes(txt) ||
             mail.to.includes(txt) &&
-            // show messages in inbox that the user doesn't send to someone else
-            (status === 'inbox' && mail.to !== gLoggedinUser.email) 
+            // show messages in inbox that were sent just to the logged in user!
+            status === 'inbox' && mail.to === gLoggedinUser.email
         ))
     }
 
@@ -70,9 +75,19 @@ function removeMail(id) {
     return Promise.resolve(mails)
 }
 
-function addMail(id, subject, body, isRead, to, from) {
+// function addMail(id, subject, body, isRead, to, from) {
+//     let mails = _loadFromStorage()
+//     const mail = _createMail(id, subject, body, isRead, to, from)
+//     mails = [mail, ...mails]
+//     console.log('mail:', mail)
+//     console.log('mails:', mails)
+//     _saveToStorage(mails)
+//     return Promise.resolve(mail)
+// }
+
+function addMail({ subject, body, to }) {
     let mails = _loadFromStorage()
-    const mail = _createMail(id, subject, body, isRead, to, from)
+    const mail = _createMail(subject, body, to)
     mails = [mail, ...mails]
     console.log('mail:', mail)
     console.log('mails:', mails)
@@ -80,35 +95,57 @@ function addMail(id, subject, body, isRead, to, from) {
     return Promise.resolve(mail)
 }
 
-function updateMail(id, subject, body, isRead, to, from) {
-    const mails = _loadFromStorage()
-    let mail = mails.find(mail => id === mail.id)
-    mail = _createMail(id, subject, body, isRead, to, from)
-    _saveToStorage(mails)
-    return Promise.resolve(mail)
-}
+// function updateMail(id, subject, body, isRead, to, from) {
+//     const mails = _loadFromStorage()
+//     let mail = mails.find(mail => id === mail.id)
+//     mail.subject = subject
+//     mail.body = body
+//     mail.isRead = isRead
+//     mail.to = to
+//     mail.from = from
+//     _saveToStorage(mails)
+//     return Promise.resolve(mail)
+// }
 
 // private functions:
 
-function _createMails() {
-    const mails = []
-    for (let i = 0; i < 5; i++) {
-        mails.push(_createMail())
-    }
-    return mails
+// function _createMails() {
+//     const mails = []
+//     for (let i = 0; i < 5; i++) {
+//         mails.unshift(_createMail())
+//     }
+//     return mails
+// }
+
+function _loadFromDemo() {
+    return 
 }
 
-function _createMail(id, subject, body, isRead, to, from) {
+// function _createMail(id, subject, body, isRead, to, from) {
+//     console.log('to:', to)
+//     console.log('from:', from)
+//     return {
+//         id: id || utilService.makeId(),
+//         subject: subject || 'Message' + utilService.getRandomIntInclusive(1, 100),
+//         body: body || utilService.makeLorem(20),
+//         isRead: isRead !== undefined ? isRead : utilService.getRandomIntInclusive(0, 1) ? true : false,
+//         sentAt: new Date(),
+//         to: to || gLoggedinUser.email,
+//         from: from || gLoggedinUser.email
+//     }
+// }
+
+function _createMail(subject, body, to, isRead = true, from = gLoggedinUser.email) {
     console.log('to:', to)
     console.log('from:', from)
     return {
-        id: id || 'Mail' + utilService.makeId(),
+        id: utilService.makeId(),
         subject: subject || 'Message' + utilService.getRandomIntInclusive(1, 100),
         body: body || utilService.makeLorem(20),
-        isRead: isRead !== undefined ? isRead : utilService.getRandomIntInclusive(0, 1) ? true : false,
+        isRead,
         sentAt: new Date(),
         to: to || gLoggedinUser.email,
-        from: from || gLoggedinUser.email
+        from
     }
 }
 
