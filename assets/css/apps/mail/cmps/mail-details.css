@@ -1,0 +1,9 @@
+.mail-details {
+    margin-top: 10px;
+}
+
+.mail-details>div {
+    width: 100%;
+    min-height: 300px;
+    background-color: aliceblue;
+}

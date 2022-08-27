@@ -1,13 +1,47 @@
 .modal-container {
     width: 100%;
-    height: 100%;
     background-color: azure;
     position: absolute;
-    margin: 100px;
+    left: 175px;
+    top: 60px;
+    padding: 10px;
 }
+
+.modal-container form input {
+    padding: 10px;
+    width: 100%;
+    border: none;
+    outline: 0 solid transparent;
+    box-shadow: inset 0 -1px 0 0 rgb(100 121 143 / 50%)
+}
+
+/* .modal-container form input:focus { */
+    /* border: none; */
+/* } */
 
 .modal-container form textarea {
     height: 400px;
-    width: 470px;
+    width: 100%;
+    min-height: 315px;
+    font-family: inherit;
+    font-size: 1.25rem;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    resize: none;
+    outline: 0 solid transparent;
 }
 
+/* .modal-container form textarea:focus { */
+    /* border: none; */
+/* } */
+
+.btn-send {
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #0b57d0;
+    color: white;
+    cursor: pointer;
+    /* align-self: center; */
+}

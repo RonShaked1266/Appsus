@@ -30,20 +30,20 @@ export class MailFilter extends React.Component {
 
     render() {
         const { status, txt, isRead, isStared, lables } = this.state.filterBy
-        return <section className="car-filter">
-            {/* <form onSubmit={this.onFilter}> */}
-                <label htmlFor="by-txt">Search:</label>
+        return <section className="mail-filter main-layout">
+            <form onSubmit={this.onFilter}>
+                {/* <label htmlFor="by-txt">Search:</label> */}
                 <input
                     ref={this.inputRef}
                     type="search"
-                    placeholder="Search.."
+                    placeholder="Search In Mail"
                     id="by-txt"
                     name="txt"
                     value={txt}
                     onChange={this.handleChange}
                 />
                 {/* <button>Filter</button> */}
-            {/* </form> */}
+            </form>
         </section>
     }
 }

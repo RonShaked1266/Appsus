@@ -45,11 +45,11 @@ export class MailIndex extends React.Component {
 
 	onAddMail = (subject, to, body) => {
 		event.preventDefault()
-		// const { onToggleModal } = this
+		const { onToggleModal } = this
 		const { mails, isModalOpened } = this.state
 		// TODO: send an object to addMail function and change it in service, also change create
 		// Immediatly Close modal!
-		mailService.addMail(undefined, subject, body, true, to, undefined)
+		mailService.addMail({subject, to, body})
 			.then(addedMail => this.setState(prevState => ({
 				...prevState,
 				mails: [addedMail, ...mails],

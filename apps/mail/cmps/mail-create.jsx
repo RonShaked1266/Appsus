@@ -23,22 +23,22 @@ export class MailCreate extends React.Component {
         const { subject, to, body } = this.state.mail
         return <div className="modal-container">
             <form className="flex column align-center" onSubmit={() => onAddMail(subject, to, body)}>
-                <label htmlFor="subject">Subject:</label>
-                <input type="text" name="subject"
-                    value={subject} id="subject"
-                    onChange={handleChange}
-                />
-                <label htmlFor="to">To:</label>
                 <input type="text" name="to"
                     value={to} id="to"
+                    placeholder="To"
                     onChange={handleChange}
                 />
-                <label htmlFor="body">Enter Your Message Here:</label>
+                <input type="text" name="subject"
+                    value={subject} id="subject"
+                    placeholder="Subject"
+                    onChange={handleChange}
+                />
+                {/* <label htmlFor="body">Enter Your Message Here:</label> */}
                 <textarea type="text" name="body"
                     value={body} id="body"
                     onChange={handleChange}
                 />
-                <button>Send</button>
+                <button className="btn-send">Send</button>
             </form>
         </div>
     }
