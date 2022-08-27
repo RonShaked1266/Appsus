@@ -1,5 +1,6 @@
 import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/storage.service.js'
+import { demoService } from './demo.service.js'
 
 export const mailService = {
     query,
@@ -14,8 +15,8 @@ const DB_KEY = 'mailsDB'
 // const gMails = []
 
 const gLoggedinUser = {
-    email: 'user@appsus.com',
-    fullname: 'Appsus Appsus'
+    email: 'ArielRon@appsus.com',
+    fullname: 'Ariel Ron'
 }
 
 // const criteria = {
@@ -56,6 +57,7 @@ function query(filterBy) {
     }
 
     // gMails = mails
+    console.log('mails:', mails)
     return Promise.resolve(mails)
 }
 
@@ -118,7 +120,7 @@ function addMail({ subject, body, to }) {
 // }
 
 function _loadFromDemo() {
-    return 
+    return demoService.loadFromDemo()
 }
 
 // function _createMail(id, subject, body, isRead, to, from) {
@@ -135,7 +137,7 @@ function _loadFromDemo() {
 //     }
 // }
 
-function _createMail(subject, body, to, isRead = true, from = gLoggedinUser.email) {
+function _createMail(subject, body, to, isRead = true, from = gLoggedinUser.fullname) {
     console.log('to:', to)
     console.log('from:', from)
     return {
