@@ -16,8 +16,8 @@ export class NoteEdit extends React.Component {
 
     componentDidMount() {
         // setTimeout(() => {
-            this.loadNote()
-            // }, 1000)
+        this.loadNote()
+        // }, 1000)
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -152,7 +152,7 @@ export class NoteEdit extends React.Component {
             </form>
             <div className={note.bgColor}>
                 <div className="flex space-between note-preview">
-                    <DynamicCmp note={note}/>
+                    <DynamicCmp note={note} />
                     <div className="btns">
                         <button className="pin"><img src="assets/icons/pin.svg" /></button>
                         <button onClick={() => onRemoveNote(note.id)}><img src="assets/icons/trash.png" /></button>
@@ -200,34 +200,36 @@ function NoteVideo({ note }) {
 export class NoteTodos extends React.Component {
 
     state = {
-        todo: null
+        // note: null
 
     }
 
-
-    onRemoveTodo = (idx) => {
-        // noteService.removeTodo(idx)
-        // .then(() => {
-        //     console.log('Removed!')
-        //     this.setState({ todo: null })
-        // })
+    onRemoveTodo = (idx, noteId) => {
+        // noteService.removeTodo(idx, noteId)
+        //     .then((newNote) => {
+        //         console.log('Removed!')
+        //         const note = newNote
+        //         this.setState({ note })
+        //     })
+            
     }
 
     render() {
-    const { note } = this.props
-    return <section>
-        <h4>{note.info.label}</h4>
-        <ul>
-            {
-                note.info.todos.map((todo, idx) =>
-                    <li className="flex space-between note-todos" key={idx}>
-                        <div>{todo.txt}
-                            <br></br>Done at: {todo.doneAt}
-                        </div>
-                        <button onClick={() => onRemoveTodo(idx)}>✖</button>
-                    </li>)
-            }
-        </ul>
-    </section>
-   }
+        const { note } = this.props
+        const { onRemoveTodo } = this
+        return <section>
+            <h4>{note.info.label}</h4>
+            <ul>
+                {
+                    note.info.todos.map((todo, idx) =>
+                        <li className="flex space-between note-todos" key={idx}>
+                            <div>{todo.txt}
+                                <br></br>Done at: {todo.doneAt}
+                            </div>
+                            <button onClick={() => onRemoveTodo(idx, note.id)}>✖</button>
+                        </li>)
+                }
+            </ul>
+        </section>
+    }
 }

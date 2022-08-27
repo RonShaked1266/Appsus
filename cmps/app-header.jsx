@@ -35,6 +35,7 @@ export class AppHeader extends React.Component {
                         <NavLink onClick={closeMenu} to="/about">About</NavLink>
                         <NavLink onClick={closeMenu} to="/mail">Mail</NavLink>
                         <NavLink onClick={closeMenu} to="/note">Note</NavLink>
+                        <NavLink onClick={closeMenu} to="/book">Book</NavLink>
                 </nav>}
             </div>
         </header>

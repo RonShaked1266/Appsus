@@ -1,0 +1,25 @@
+header {
+    background: lightseagreen;
+    border-bottom: 2px solid white;
+}
+
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.app-header nav>*:not(:last-child) {
+    margin-inline-end: 10px;
+}
+
+.active {
+    color: darkblue;
+    font-weight: bold;
+}
+
+.my-active {
+    color: darkgreen;
+    font-size: 20px;
+}

@@ -7,6 +7,7 @@ export const noteService = {
     remove,
     addNote,
     updateNote,
+    removeTodo
 
 }
 
@@ -41,15 +42,22 @@ function getById(noteId) {
     return Promise.resolve(note)
 }
 
-function removeTodo(todo) {
-
-}
-
 function remove(noteId) {
     let notes = _loadFromStorage()
     notes = notes.filter(note => note.id !== noteId)
     _saveToStorage(notes)
     return Promise.resolve()
+}
+
+function removeTodo(idx, noteId) {
+    let notes = _loadFromStorage()
+    const note = notes.find(note => noteId === note.id)
+    // console.log(note)
+    notes = notes.filter(note => note.id !== noteId)
+    const newNote = note.info.todos.splice(idx, 1)
+    notes = [newNote, ...notes]
+    _saveToStorage(notes)
+    return Promise.resolve(newNote)
 }
 
 function addNote({ txt, type, title }) {
@@ -114,15 +122,16 @@ function _update(note) {
     }
     if (note.type === "note-todos") {
         const str = note.txt.split(' ')
+        const date = new Date()
         console.log(str[0])
         return {
             id: note.id,
             type: "note-todos",
             info: {
                 label: "TODOS",
-                todos: [{ txt: str[0], doneAt: new Date() },
-                { txt: str[1], doneAt: new Date() },
-                { txt: str[2], doneAt: new Date() }]
+                todos: [{ txt: str[0], doneAt:  utilService.getDayOfMonth(date) + ' ' + utilService.getMonthName(date) },
+                { txt: str[1], doneAt: utilService.getDayOfMonth(date) + ' ' + utilService.getMonthName(date) },
+                { txt: str[2], doneAt: utilService.getDayOfMonth(date) + ' ' + utilService.getMonthName(date)}]
             },
             style: {
                 backgroundColor: note.bgColor
@@ -173,15 +182,16 @@ function _createNote(txt, type, title) {
     }
     if (type === "note-todos") {
         const str = txt.split(' ')
+        const date = new Date()
         console.log(str[0])
         return {
             id: utilService.makeId(),
             type: "note-todos",
             info: {
                 label: title,
-                todos: [{ txt: str[0], doneAt: new Date() },
-                { txt: str[1], doneAt: new Date() },
-                { txt: str[2], doneAt: new Date() }]
+                todos: [{ txt: str[0], doneAt:  utilService.getDayOfMonth(date) + ' ' + utilService.getMonthName(date) },
+                { txt: str[1], doneAt: utilService.getDayOfMonth(date) + ' ' + utilService.getMonthName(date) },
+                { txt: str[2], doneAt: utilService.getDayOfMonth(date) + ' ' + utilService.getMonthName(date)}]
             },
             style: {
                 backgroundColor: "white"
@@ -241,7 +251,7 @@ gNotes = [
         info: {
             label: "Get my stuff together",
             todos: [{ txt: "Driving liscence", doneAt: null },
-            { txt: "Coding power", doneAt: 187111111 }]
+            { txt: "Coding power", doneAt: ''}]
         },
         style: {
             backgroundColor: "blue"
@@ -253,7 +263,7 @@ gNotes = [
         info: {
             label: "Get my stuff together",
             todos: [{ txt: "Driving liscence", doneAt: null },
-            { txt: "Coding power", doneAt: 187111111 }]
+            { txt: "Coding power", doneAt: ''}]
         },
         style: {
             backgroundColor: "yellow"
