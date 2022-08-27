@@ -1,0 +1,30 @@
+.review-add form {
+    background-color: lightblue;
+    padding: 50px;
+    box-shadow: 0 0 10px 0 white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-add form > input {
+    margin-bottom: 10px;
+}
+
+.review-add form > textarea {
+    margin-bottom: 10px;
+}
+
+.reviews {
+    background-color: lightblue;
+    padding: 50px;
+    box-shadow: 0 0 10px 0 white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reviews button {
+    padding: 5px;
+}

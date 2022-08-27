@@ -1,0 +1,15 @@
+
+.book-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.book-details .green {
+    color: green;
+}
+
+.book-details .red {
+    color: red;
+}
