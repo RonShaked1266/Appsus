@@ -23,10 +23,11 @@ function query(filterBy) {
     console.log(filterBy)
 
     if (filterBy) {
-        let { name, type } = filterBy
+        let { name, byType } = filterBy
         console.log('filterBy from service', filterBy);
         notes = notes.filter(note => (      
-            note.type.toLowerCase().includes(type.toLowerCase())          
+            note.type.includes(byType)          
+            // note.type.toLowerCase().includes(byType.toLowerCase())          
             // && note.type.toLowerCase().includes(type.toLowerCase())          
         ))
     }

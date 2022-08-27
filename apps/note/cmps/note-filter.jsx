@@ -3,7 +3,7 @@ export class NoteFilter extends React.Component {
     state = {
         filterBy: {
             name: '',
-            type: '',
+            byType: '',
 
         },
     }
@@ -33,18 +33,18 @@ export class NoteFilter extends React.Component {
     }
 
     render() {
-        const { name, type } = this.state.filterBy
+        const { name, byType } = this.state.filterBy
         const {handleChange, onFilter } = this
-        // console.log(type)
+        // console.log(byType)
         return <section className="note-filter">
             <form className="flex space-between main-input" onSubmit={onFilter}>
                 <input
                     ref={this.inputRef}
                     type="text"
                     placeholder="Search.."
-                    id="by-type"
-                    name="type"
-                    value={type}
+                    id="byType"
+                    name="byType"
+                    value={byType}
                     onChange={handleChange}
                 />
                 <div className="btns-container">
