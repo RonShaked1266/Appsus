@@ -2,7 +2,7 @@ import { MailList } from "../cmps/mail-list.jsx";
 import { mailService } from "../services/mail.service.js";
 // import { utilService } from "../../../services/util.service.js";
 import { MailCreate } from "../cmps/mail-create.jsx";
-import { MailDetails } from "../cmps/mail-details.jsx";
+import { MailDetails } from "../views/mail-details.jsx";
 import { MailInbox } from "../cmps/mail-inbox.jsx";
 import { MailFilter } from "../cmps/mail-filter.jsx";
 

@@ -31,10 +31,14 @@ export class MailDetails extends React.Component {
         const { mail } = this.state
         if (!mail) return <div>Loading...</div>
         return <section className="mail-details main-layout">
-            <div>
-                <div><button onClick={this.onGoBack}>Go Back</button></div>
-                <h1>{mail.subject}</h1>
-                <div>{mail.to}</div>
+            <div className="main-details-div-container">
+                <div className="btn-go-back-container">
+                    <button onClick={this.onGoBack}>
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <h1 className="mail-subject">{mail.subject}</h1>
+                <div>{mail.from}</div>
                 <div>{`${utilService.getDayOfMonth(mail.sentAt) + ' ' + utilService.getMonthName(mail.sentAt)}`}</div>
                 <p>{mail.body}</p>
             </div>
