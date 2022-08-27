@@ -15,7 +15,9 @@ export class NoteEdit extends React.Component {
     inputRef = React.createRef()
 
     componentDidMount() {
-        this.loadNote()
+        // setTimeout(() => {
+            this.loadNote()
+            // }, 1000)
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -54,13 +56,6 @@ export class NoteEdit extends React.Component {
                 showErrorMsg('Cannot remove note')
             })
     }
-
-    // onUpdateTxt = (ev) => {
-    //     ev.preventDefault()
-    //     const { note, isBounce } = this.state
-    //     noteService.updateNote(note)
-    //         .then((noteToUpdate) => {
-    //             console.log('update!')})}
 
     onUpdateNote = (ev) => {
         ev.preventDefault()
@@ -138,9 +133,9 @@ export class NoteEdit extends React.Component {
     render() {
         const { note, isPalette } = this.state
         const { txt } = this.state.note
-        const { DynamicCmp, onUpdateTxt, onRemoveNote, onSetPalette, handleChange, onUpdateNote, onGoBack, onSetColor, goImg } = this
+        const { DynamicCmp, onRemoveNote, onSetPalette, handleChange, onUpdateNote, onGoBack, onSetColor, goImg } = this
         return <section className="note-edit">
-            < h1 > edit</h1 >
+            <h1>{note.type}</h1>
             <form className="flex space-between main-input" onSubmit={onUpdateNote} >
                 <input
                     ref={this.inputRef}
@@ -211,11 +206,11 @@ export class NoteTodos extends React.Component {
 
 
     onRemoveTodo = (idx) => {
-    noteService.removeTodo(idx)
-        .then(() => {
-            console.log('Removed!')
-            this.setState({ todo: null })
-        })
+        // noteService.removeTodo(idx)
+        // .then(() => {
+        //     console.log('Removed!')
+        //     this.setState({ todo: null })
+        // })
     }
 
     render() {
@@ -225,7 +220,7 @@ export class NoteTodos extends React.Component {
         <ul>
             {
                 note.info.todos.map((todo, idx) =>
-                    <li className="flex space-between note-todos" key={todo.doneAt}>
+                    <li className="flex space-between note-todos" key={idx}>
                         <div>{todo.txt}
                             <br></br>Done at: {todo.doneAt}
                         </div>

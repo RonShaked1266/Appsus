@@ -49,7 +49,6 @@ function NoteVideo({ note }) {
 export class NoteTodos extends React.Component {
     render() {
         const { note } = this.props
-        console.log(note)
         return <section>
             <h4>{note.info.label}</h4>
             <ul>
