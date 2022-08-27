@@ -17,6 +17,8 @@
     margin-bottom: 10px;
 }
 
-.book-app button:hover {
-    cursor: pointer;
+.book-app img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
