@@ -4,8 +4,8 @@
     width: 35px;
     height: 35px;
 }
-.color-palette button:hover{
-    box-shadow: 0 0 10px 0 gray; 
+.color-palette button:hover {
+    box-shadow: 0 0 10px 0 lightgray; 
 }
 .color-palette .red{
     background-color: lightcoral;

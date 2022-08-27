@@ -9,11 +9,15 @@
 .note-edit button {
     width: 30px;
     border: none;
+    /* border-radius: 50%; */
     background-color: transparent;
     border-radius: 10px;
     font-family: montserrat-bold, serif;
     font-size: 1.5rem;
     margin: 3px;
+}
+.note-edit button:hover {
+    box-shadow: 0 0 10px 0 lightgray;
 }
 
 .note-edit .pin {

@@ -6,7 +6,7 @@ export class NoteAdd extends React.Component {
             txt: '',
             type: '',
             title: '',
-        }, 
+        },
         isInput: false
     }
 
@@ -78,44 +78,46 @@ export class NoteAdd extends React.Component {
         const { onAddNote } = this.props
         const { handleChange, goTxt, goImg, goVideo, goTodos } = this
         return <section className="note-add">
-            <form className="flex space-between main-input" onSubmit={() => onAddNote(note)}>
-                <input
-                    ref={this.inputRef}
-                    type="text"
-                    placeholder="What's on your mind.."
-                    name="txt"
-                    value={txt} id="txt"
-                    onChange={handleChange}
-                />
-                <div className="btns-container">
-                    <button htmlFor="txt" onClick={goTxt}>💬</button>
-                    {/* <button onClick={goTodos}><img src="assets/icons/list.svg" /></button> */}
-                    <button onClick={goTodos}>💭</button>
-                    <button onClick={goVideo}>▶</button>
+            <div className="note-add-container">
+                <form className="flex space-between main-input" onSubmit={() => onAddNote(note)}>
                     <input
-                        type="image"
-                        name="img" id="img"
-                        src={txt}
-                        hidden />
-                    <button htmlFor="img" onClick={goImg}><img src="assets/icons/img.svg" /></button>
-                    {/* <button><i class="fa-regular fa-user"></i></button> */}
-                    <button><img src="assets/icons/add.svg" /></button>
-                </div>
-            </form>
-        
-            { isInput && <form className="flex space-between title-input">
-                <input
-                    type="text"
-                    placeholder="Title.."
-                    name="title"
-                    value={title} 
-                    id="title"
-                    onChange={handleChange}
-                />
-                <div className="btns-container">
-                    {/* <button htmlFor="title" ><img src="assets/icons/add.svg" /></button> */}
-                </div>
-            </form>}
+                        ref={this.inputRef}
+                        type="text"
+                        placeholder="What's on your mind.."
+                        name="txt"
+                        value={txt} id="txt"
+                        onChange={handleChange}
+                    />
+                    <div className="btns-container">
+                        <button htmlFor="txt" onClick={goTxt}>💬</button>
+                        {/* <button onClick={goTodos}><img src="assets/icons/list.svg" /></button> */}
+                        <button onClick={goTodos}>💭</button>
+                        <button onClick={goVideo}>▶</button>
+                        <input
+                            type="image"
+                            name="img" id="img"
+                            src={txt}
+                            hidden />
+                        <button htmlFor="img" onClick={goImg}><img src="assets/icons/img.svg" /></button>
+                        {/* <button><i class="fa-regular fa-user"></i></button> */}
+                        <button><img src="assets/icons/add.svg" /></button>
+                    </div>
+                </form>
+                {isInput && <form className="flex space-between title-input">
+                    <input
+                        type="text"
+                        placeholder="Title.."
+                        name="title"
+                        value={title}
+                        id="title"
+                        onChange={handleChange}
+                    />
+                    <div className="btns-container">
+                        {/* <button htmlFor="title" ><img src="assets/icons/add.svg" /></button> */}
+                    </div>
+                </form>}
+            </div>
+
 
 
         </section >
