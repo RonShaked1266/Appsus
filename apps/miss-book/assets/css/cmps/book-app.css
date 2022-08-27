@@ -4,3 +4,19 @@
     font-size: 15px;
     color: white;
 }
+
+.book-app button {
+    /* border: 2px solid white; */
+    outline: 0;
+    /* box-shadow: 0 0 10px 0 white; */
+    background: rgb(70, 129, 70);
+    padding: 10px;
+    /* font-size: 15px; */
+    border-radius: 4px;
+    /* color: white; */
+    margin-bottom: 10px;
+}
+
+.book-app button:hover {
+    cursor: pointer;
+}
