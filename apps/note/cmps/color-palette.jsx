@@ -2,13 +2,13 @@ export function ColorPalette({onSetColor}) {
 
     return <section className="color-palette">
         <div>
-            <button onClick={() => onSetColor('red') }>🔴</button>
-            <button onClick={() => onSetColor('orange') }>🟠</button>
-            <button onClick={() => onSetColor('yellow') }>🟡</button>
-            <button onClick={() => onSetColor('green') }>🟢</button>
-            <button onClick={() => onSetColor('blue')}>🔵</button>
-            <button onClick={() => onSetColor('purple') }>🟣</button>
-            <button onClick={() => onSetColor('white') }>⚪</button>
+            <button className="red" onClick={() => onSetColor('red') }></button>
+            <button className="orange" onClick={() => onSetColor('orange') }></button>
+            <button className="yellow" onClick={() => onSetColor('yellow') }></button>
+            <button className="green" onClick={() => onSetColor('green') }></button>
+            <button className="blue" onClick={() => onSetColor('blue')}></button>
+            <button className="purple" onClick={() => onSetColor('purple') }></button>
+            <button className="white" onClick={() => onSetColor('white') }></button>
         </div>
     </section>
 }

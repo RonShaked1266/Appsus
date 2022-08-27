@@ -1,0 +1,40 @@
+.color-palette button{
+    border-radius: 50%;
+    border: 1px solid lightgray;
+    width: 35px;
+    height: 35px;
+}
+.color-palette button:hover{
+    box-shadow: 0 0 10px 0 gray; 
+}
+.color-palette .red{
+    background-color: lightcoral;
+}
+
+.color-palette .blue {
+    background-color: rgb(203, 236, 247);
+}
+
+.color-palette .green {
+    background-color: rgb(189, 232, 189);
+}
+
+.color-palette .red {
+    background-color: lightcoral;
+}
+
+.color-palette .yellow {
+    background-color: lightyellow;
+}
+
+.color-palette .orange {
+    background-color: rgb(254, 213, 198);
+}
+
+.color-palette .purple {
+    background-color: plum;
+}
+
+.color-palette .white {
+    background-color: white;
+}
