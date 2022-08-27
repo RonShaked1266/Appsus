@@ -34,7 +34,7 @@ export class MailDetails extends React.Component {
             <div className="main-details-div-container">
                 <div className="btn-go-back-container">
                     <button onClick={this.onGoBack}>
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        <i className="fa fa-arrow-left" aria-hidden="true"></i>
                     </button>
                 </div>
                 <h1 className="mail-subject">{mail.subject}</h1>
