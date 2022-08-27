@@ -1,10 +1,13 @@
 .modal-container {
-    width: 100%;
-    background-color: azure;
+    width: 50%;
+    background-color: lightgray;
+    color: #202124;
     position: absolute;
-    left: 175px;
-    top: 60px;
+    left: 350px;
+    top: 70px;
+    border-radius: 10px;
     padding: 10px;
+    z-index: 1
 }
 
 .modal-container form input {
