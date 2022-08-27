@@ -7,8 +7,12 @@ export function MailPreview({ mail, onRemoveMail, onOpenMail }) {
         return !mail.isRead ? 'unread' : ''
     }
 
+    function getSubjectTxtClass(mail) {
+        return mail.subject.length >= 15? 'long-txt': ''
+    }
+
     function getBodyTxtClass(mail) {
-        return mail.body.length >= 30? 'long-body': ''
+        return mail.body.length >= 20? 'long-txt': ''
     }
 
     console.log('mail.sentAt:', mail.sentAt)
@@ -17,7 +21,7 @@ export function MailPreview({ mail, onRemoveMail, onOpenMail }) {
         <div className="mail-preview-div flex">
             {/* onClick={() => onOpenMail(mail.id)} */}
             <div className={`mail-from ${getReadClass(mail)}`}>{mail.from}</div>
-            <div className={`mail-subject ${getReadClass(mail)}`}>{mail.subject}</div>
+            <div className={`mail-subject ${getReadClass(mail)} ${getSubjectTxtClass(mail)}`}>{mail.subject}</div>
             <div className={`mail-body ${getBodyTxtClass(mail)}`}>{mail.body}</div>
             {/*React Doesn't like dates objects when the component did mount! (first time) */}
             {/* <div className={`mail-sentAt ${getReadClass(mail)}`}>{mail.sentAt + ''}</div>  */}
