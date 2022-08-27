@@ -19,7 +19,7 @@ export function App() {
                 <Route path="/note/edit/:noteId" component={NoteEdit} />
                 <Route path="/note" component={NoteIndex} />
                 <Route path="/book" component={BookApp} />
-                <Route path="/about" component={About} />
+                {/* <Route path="/about" component={About} /> */}
                 <Route path="/" component={Home} />
             </Switch>
         </section>

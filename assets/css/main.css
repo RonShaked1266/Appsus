@@ -43,6 +43,7 @@
 
 @import './cmps/user-msg.css';
 @import './cmps/app-header.css';
+@import './cmps/home.css';
 
 @import './apps/mail/cmps/mail-create.css';
 @import './apps/mail/cmps/mail-list.css';

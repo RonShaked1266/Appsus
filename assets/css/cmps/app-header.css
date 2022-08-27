@@ -10,17 +10,14 @@ header {
     padding: 20px 0;
 }
 
-nav {
+/* nav {
     position: fixed;
     flex-direction: column;
-   
-    
-
     background-color: var(--clr1);
     width: 100%;
     top: 66px;
-    z-index: 20;
-}
+    z-index: 30;
+} */
 
 nav a {
     margin: .5em;
@@ -31,34 +28,40 @@ nav a:active {
 }
 
 nav a.active {
-    color: darkblue;
+    color: rgb(41, 145, 225);
     font-weight: bold;
-    text-decoration: overline;
+    /* text-decoration: overline; */
 }
 
 .app-header button {
     border: none;
     background-color: transparent;
 }
+
 .app-header h1 {
     font-size: 1.8em;
 }
+
 .app-header .A {
-    color: rgb(41, 145, 225); 
-}
-.app-header .p1 {
-    color: red; 
-}
-.app-header .p {
-    color: rgb(243, 213, 42); 
-}
-.app-header .s {
-    color: rgb(41, 145, 225); 
-}
-.app-header .u {
-    color: rgb(8, 177, 8); 
-}
-.app-header .s {
-    color: red; 
+    color: rgb(41, 145, 225);
 }
 
+.app-header .p1 {
+    color: red;
+}
+
+.app-header .p {
+    color: rgb(243, 213, 42);
+}
+
+.app-header .s {
+    color: rgb(41, 145, 225);
+}
+
+.app-header .u {
+    color: rgb(8, 177, 8);
+}
+
+.app-header .s {
+    color: red;
+}
