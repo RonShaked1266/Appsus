@@ -6,18 +6,30 @@ export const noteService = {
     query,
     remove,
     addNote,
-    
+    updateNote,
+
 }
 
 let gNotes
 const KEY = 'notesDB'
 
-function query() {
+function query(filterBy) {
     let notes = _loadFromStorage()
     if (!notes) {
         notes = gNotes
         _saveToStorage(notes)
     }
+    console.log(filterBy)
+
+    if (filterBy) {
+        let { name, type } = filterBy
+        console.log('filterBy from service', filterBy);
+        notes = notes.filter(note => (      
+            note.type.toLowerCase().includes(type.toLowerCase())          
+            // && note.type.toLowerCase().includes(type.toLowerCase())          
+        ))
+    }
+
     return Promise.resolve(notes)
 }
 
@@ -30,7 +42,7 @@ function getById(noteId) {
 }
 
 function removeTodo(todo) {
-    
+
 }
 
 function remove(noteId) {
@@ -40,15 +52,86 @@ function remove(noteId) {
     return Promise.resolve()
 }
 
-function addNote({txt, type}) {
+function addNote({ txt, type, title }) {
     let notes = _loadFromStorage()
-    const newNote = _createNote(txt, type)
+    const newNote = _createNote(txt, type, title)
     notes = [newNote, ...notes]
     _saveToStorage(notes)
     return Promise.resolve(newNote)
 }
 
-function _createNote(txt, type) {
+function updateNote(note) {
+    // console.log(note)
+    // console.log(note.txt)
+    console.log(note.bgColor)
+    let notes = _loadFromStorage()
+    const noteToUpdate = _update(note)
+    console.log(noteToUpdate)
+    notes = notes.map(note => note.id === noteToUpdate.id ? noteToUpdate : note)
+    _saveToStorage(notes)
+    return Promise.resolve(noteToUpdate)
+}
+
+function _update(note) {
+    if (note.type === "note-txt") {
+        return {
+            id: note.id,
+            type: "note-txt",
+            isPinned: true,
+            info: {
+                txt: note.txt
+            },
+            style: {
+                backgroundColor: note.bgColor
+            }
+        }
+    }
+    if (note.type === "note-img") {
+        return {
+            id: note.id,
+            type: "note-img",
+            info: {
+                url: note.info.url,
+                title: note.txt
+            },
+            style: {
+                backgroundColor: note.bgColor
+            }
+        }
+    }
+    if (note.type === "note-Video") {
+        return {
+            id: note.id,
+            type: "note-video",
+            info: {
+                url: note.txt,
+                title: "Video Play"
+            },
+            style: {
+                backgroundColor: note.bgColor
+            }
+        }
+    }
+    if (note.type === "note-todos") {
+        const str = note.txt.split(' ')
+        console.log(str[0])
+        return {
+            id: note.id,
+            type: "note-todos",
+            info: {
+                label: "TODOS",
+                todos: [{ txt: str[0], doneAt: new Date() },
+                { txt: str[1], doneAt: new Date() },
+                { txt: str[2], doneAt: new Date() }]
+            },
+            style: {
+                backgroundColor: note.bgColor
+            }
+        }
+    }
+
+}
+function _createNote(txt, type, title) {
     if (type === "note-txt") {
         return {
             id: utilService.makeId(),
@@ -56,6 +139,9 @@ function _createNote(txt, type) {
             isPinned: true,
             info: {
                 txt
+            },
+            style: {
+                backgroundColor: "white"
             }
         }
     }
@@ -65,11 +151,11 @@ function _createNote(txt, type) {
             type: "note-img",
             info: {
                 url: txt,
-                title: "IMG"
-                },
-                style: {
-                backgroundColor: "#00d"
-                }
+                title
+            },
+            style: {
+                backgroundColor: "white"
+            }
         }
     }
     if (type === "note-Video") {
@@ -78,28 +164,31 @@ function _createNote(txt, type) {
             type: "note-video",
             info: {
                 url: txt,
-                title: "Video Play"
-                },
-                style: {
-                backgroundColor: "#00d"
-                }
+                title
+            },
+            style: {
+                backgroundColor: "white"
+            }
         }
     }
-    if (type === "note-todo") {
+    if (type === "note-todos") {
         const str = txt.split(' ')
         console.log(str[0])
         return {
             id: utilService.makeId(),
-            type: "note-todo",
+            type: "note-todos",
             info: {
-                label: "TODOS",
+                label: title,
                 todos: [{ txt: str[0], doneAt: new Date() },
                 { txt: str[1], doneAt: new Date() },
                 { txt: str[2], doneAt: new Date() }]
-                }
+            },
+            style: {
+                backgroundColor: "white"
             }
+        }
     }
-    
+
 }
 
 function _saveToStorage(notes) {
@@ -114,42 +203,71 @@ function _loadFromStorage() {
 
 gNotes = [
     {
-     id: "n101",
-     type: "note-txt",
-     isPinned: true,
-     info: {
-     txt: "Fullstack Me Baby!"
-     }
+        id: "n101",
+        type: "note-txt",
+        isPinned: true,
+        info: {
+            txt: "Fullstack Me Baby!"
+        },
+        style: {
+            backgroundColor: "white"
+        }
     },
     {
-     id: "n102",
-     type: "note-img",
-     info: {
-     url: "https://picsum.photos/id/237/200/300",
-     title: "My Dog"
-     },
-     style: {
-     backgroundColor: "#00d"
-     }
+        id: "n102",
+        type: "note-img",
+        info: {
+            url: "https://picsum.photos/id/237/200/300",
+            title: "My Dog"
+        },
+        style: {
+            backgroundColor: "yellow"
+        }
     },
     {
-     id: "n103",
-     type: "note-video",
-     info: {
-     url: "https://www.youtube.com/embed/A_MjCqQoLLA?controls=0",
-     title: "Video play"
-     },
-     style: {
-     backgroundColor: "#00d"
-     }
+        id: "n103",
+        type: "note-video",
+        info: {
+            url: "https://www.youtube.com/embed/A_MjCqQoLLA?controls=0",
+            title: "Video play"
+        },
+        style: {
+            backgroundColor: "white"
+        }
     },
     {
-     id: "n104",
-     type: "note-todos",
-     info: {
-     label: "Get my stuff together",
-     todos: [{ txt: "Driving liscence", doneAt: null },
-     { txt: "Coding power", doneAt: 187111111 }]
-     }
-    }
-    ];
+        id: "n104",
+        type: "note-todos",
+        info: {
+            label: "Get my stuff together",
+            todos: [{ txt: "Driving liscence", doneAt: null },
+            { txt: "Coding power", doneAt: 187111111 }]
+        },
+        style: {
+            backgroundColor: "blue"
+        }
+    },
+    {
+        id: "n105",
+        type: "note-todos",
+        info: {
+            label: "Get my stuff together",
+            todos: [{ txt: "Driving liscence", doneAt: null },
+            { txt: "Coding power", doneAt: 187111111 }]
+        },
+        style: {
+            backgroundColor: "yellow"
+        }
+    },
+    {
+        id: "n106",
+        type: "note-img",
+        info: {
+            url: "https://picsum.photos/seed/picsum/200/300",
+            title: "Switzerland"
+        },
+        style: {
+            backgroundColor: "purple"
+        }
+    },
+];

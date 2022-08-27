@@ -5,11 +5,12 @@
     border-radius: 10px;
     font-family: montserrat-bold, serif;
     font-size: 1.2rem;
-    margin: 6px;
+    margin: 3px;
 }
 
 .note-add {
 display: flex;
+flex-direction: column;
 justify-content: center;
 align-items: center;
 }
@@ -27,17 +28,36 @@ align-items: center;
     border-radius: 10px;
     font-family: lato, sans-serif;
     font-size: 1em;
-    width: 45%;
+    width: 55%;
     outline-color: white;
     outline-width: 0;
 }
 
-.main-input {
+.note-add .main-input {
 background-color: white;
 box-shadow: 0 0 10px 0 gray;
 border-radius: 10px;
-margin-block-start: 30px;
+margin-block-start: 15px;
 margin-block-end: 15px;
 max-width: 600px;
-min-width: 450px;
+min-width: 350px;                
+}
+
+.note-add .title-input {
+background-color: white;
+box-shadow: 0 0 10px 0 gray;
+border-radius: 10px;
+/* margin-block-start: 30px; */
+margin-block-end: 15px;
+max-width: 600px;
+min-width: 350px;                
+}
+
+@media (min-width: 900px) {
+    .main-input {
+        min-width: 450px;                
+    }   
+    .title-input {
+        min-width: 450px;                
+    }   
 }

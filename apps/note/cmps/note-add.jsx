@@ -1,11 +1,13 @@
 import { noteService } from './../services/note.service.js'
-const { withRouter } = ReactRouterDOM
-export class _NoteAdd extends React.Component {
+// const { withRouter } = ReactRouterDOM
+export class NoteAdd extends React.Component {
     state = {
         note: {
             txt: '',
             type: '',
-        }
+            title: '',
+        }, 
+        isInput: false
     }
 
     inputRef = React.createRef()
@@ -20,11 +22,12 @@ export class _NoteAdd extends React.Component {
             }
         }))
     }
-    
+
     goTxt = (ev) => {
         console.log(this.state.note)
         ev.preventDefault()
         this.inputRef.current.focus()
+        this.inputRef.current.placeholder = "What's on your mind.."
         this.setState((prevState) => ({
             note: {
                 ...prevState.note,
@@ -35,37 +38,43 @@ export class _NoteAdd extends React.Component {
     goImg = (ev) => {
         ev.preventDefault()
         this.inputRef.current.focus()
+        this.inputRef.current.placeholder = 'Enter image URL..'
         this.setState((prevState) => ({
             note: {
                 ...prevState.note,
                 type: 'note-img'
-            }
+            },
+            isInput: true
         }))
     }
     goVideo = (ev) => {
         ev.preventDefault()
         this.inputRef.current.focus()
+        this.inputRef.current.placeholder = 'Enter video URL..'
         this.setState((prevState) => ({
             note: {
                 ...prevState.note,
                 type: 'note-video'
-            }
+            },
+            isInput: true
         }))
     }
     goTodos = (ev) => {
         ev.preventDefault()
         this.inputRef.current.focus()
+        this.inputRef.current.placeholder = 'Enter comma separated list..'
         this.setState((prevState) => ({
             note: {
                 ...prevState.note,
-                type: 'note-todo'
-            }
+                type: 'note-todos'
+            },
+            isInput: true
         }))
     }
 
     render() {
-        const { note } = this.state
-        const { txt, type } = this.state.note
+        const { note, isInput } = this.state
+        const { txt, type, title } = this.state.note
         const { onAddNote } = this.props
         const { handleChange, goTxt, goImg, goVideo, goTodos } = this
         return <section className="note-add">
@@ -79,25 +88,38 @@ export class _NoteAdd extends React.Component {
                     onChange={handleChange}
                 />
                 <div className="btns-container">
-
                     <button htmlFor="txt" onClick={goTxt}>💬</button>
+                    {/* <button onClick={goTodos}><img src="assets/icons/list.svg" /></button> */}
+                    <button onClick={goTodos}>💭</button>
                     <button onClick={goVideo}>▶</button>
-                    <button onClick={goTodos}>📋</button>
                     <input
                         type="image"
                         name="img" id="img"
                         src={txt}
                         hidden />
-                    <button htmlFor="img" onClick={goImg}><img src="assets/icons/img.svg"/></button>
+                    <button htmlFor="img" onClick={goImg}><img src="assets/icons/img.svg" /></button>
                     {/* <button><i class="fa-regular fa-user"></i></button> */}
-                    <button><img src="assets/icons/add.svg"/></button>
-                    {/* <button onClick={() => onAddNote(note)} ><img src="assets/icons/add.svg"/></button> */}
+                    <button><img src="assets/icons/add.svg" /></button>
                 </div>
             </form>
+        
+            { isInput && <form className="flex space-between title-input">
+                <input
+                    type="text"
+                    placeholder="Title.."
+                    name="title"
+                    value={title} 
+                    id="title"
+                    onChange={handleChange}
+                />
+                <div className="btns-container">
+                    {/* <button htmlFor="title" ><img src="assets/icons/add.svg" /></button> */}
+                </div>
+            </form>}
 
 
         </section >
     }
 }
 
-export const NoteAdd = withRouter(_NoteAdd)
+// export const NoteAdd = withRouter(_NoteAdd)

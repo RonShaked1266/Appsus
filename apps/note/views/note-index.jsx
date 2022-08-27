@@ -1,12 +1,15 @@
 import { NoteAdd } from '../cmps/note-add.jsx'
 import { NoteList } from './../cmps/note-list.jsx'
+import { NoteFilter } from '../cmps/note-filter.jsx'
 import { noteService } from './../services/note.service.js'
 import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
+
 export class NoteIndex extends React.Component {
     state = {
         notes: [],
         isBounce: false,
-        isPalette: false
+        isPalette: false,
+        filterBy: null,
     }
 
     componentDidMount() {
@@ -29,12 +32,10 @@ export class NoteIndex extends React.Component {
 
     onSetPalette = (noteId) => {
         // const note = this.state.notes.find(note => note.id === noteId)  
-        noteService.getById(noteId)
+        noteService.getById(noteId)   
             .then((note) => {
-                console.log('green')
                 console.log(noteId)
                 this.setState({ isPalette: true })
-                // return 'green'
             })      
     }
 
@@ -58,6 +59,7 @@ export class NoteIndex extends React.Component {
 
     onAddNote = (note) => {
         console.log(note)
+        if (note.txt !== '') {
         noteService.addNote(note)
             .then((newNote) => {
                 console.log('add!')
@@ -72,17 +74,24 @@ export class NoteIndex extends React.Component {
             .catch(err => {
                 console.log('Problem!!', err)
                 showErrorMsg('Cannot add note')
-            })
+            })}
     }
 
-
+    onSetFilter = (filterBy) => {
+        console.log(filterBy)
+        this.setState({ filterBy }, () => {
+            this.loadNotes()
+            // console.log(this.state.filterBy)
+        })
+    }
 
     render() {
         const { notes, isPalette } = this.state
-        const { onRemoveNote, onAddNote, onSetPalette } = this
+        const { onRemoveNote, onAddNote, onSetPalette, onSetFilter } = this
         return (
-            <section className="note-index main-layout">
+            <section className="note-index">
                 {/* <div>note app</div> */}
+                <NoteFilter onSetFilter={onSetFilter} />
                 <NoteAdd onAddNote={onAddNote}/>
                 <NoteList notes={notes} onRemoveNote={onRemoveNote} onSetPalette={onSetPalette} isPalette={isPalette}/>
             </section>
