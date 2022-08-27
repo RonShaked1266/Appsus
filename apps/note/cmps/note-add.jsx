@@ -1,6 +1,6 @@
 import { noteService } from './../services/note.service.js'
-const { withRouter } = ReactRouterDOM
-export class _NoteAdd extends React.Component {
+// const { withRouter } = ReactRouterDOM
+export class NoteAdd extends React.Component {
     state = {
         note: {
             txt: '',
@@ -66,7 +66,7 @@ export class _NoteAdd extends React.Component {
         this.setState((prevState) => ({
             note: {
                 ...prevState.note,
-                type: 'note-todo'
+                type: 'note-todos'
             },
             isInput: true
         }))
@@ -106,7 +106,7 @@ export class _NoteAdd extends React.Component {
             { isInput && <form className="flex space-between title-input">
                 <input
                     type="text"
-                    placeholder="What's on your mind.."
+                    placeholder="Title.."
                     name="title"
                     value={title} 
                     id="title"
@@ -122,4 +122,4 @@ export class _NoteAdd extends React.Component {
     }
 }
 
-export const NoteAdd = withRouter(_NoteAdd)
+// export const NoteAdd = withRouter(_NoteAdd)

@@ -55,6 +55,16 @@
     outline-width: 0;
 }
 
+.note-edit .main-input {
+    background-color: white;
+    box-shadow: 0 0 10px 0 gray;
+    border-radius: 10px;
+    margin-block-start: 15px;
+    margin-block-end: 15px;
+    max-width: 600px;
+    min-width: 350px;
+}
+
 .note-edit .color-palette {
     position: absolute;
     bottom: 25px;
@@ -65,26 +75,32 @@
     background-color: rgb(203, 236, 247);
     border-radius: 10px;
 }
+
 .green {
     background-color: rgb(189, 232, 189);
     border-radius: 10px;
 }
+
 .red {
     background-color: lightcoral;
     border-radius: 10px;
 }
+
 .yellow {
     background-color: lightyellow;
     border-radius: 10px;
 }
+
 .orange {
     background-color: rgb(254, 213, 198);
     border-radius: 10px;
 }
+
 .purple {
     background-color: plum;
     border-radius: 10px;
 }
+
 .white {
     background-color: white;
     border-radius: 10px;

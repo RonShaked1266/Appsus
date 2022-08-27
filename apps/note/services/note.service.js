@@ -19,11 +19,12 @@ function query(filterBy) {
         notes = gNotes
         _saveToStorage(notes)
     }
+    console.log(filterBy)
 
     if (filterBy) {
         let { name, type } = filterBy
         console.log('filterBy from service', filterBy);
-        notes = notes.filter(note => (
+        notes = notes.filter(note => (      
             note.type.toLowerCase().includes(type.toLowerCase())          
             // && note.type.toLowerCase().includes(type.toLowerCase())          
         ))
@@ -111,12 +112,12 @@ function _update(note) {
             }
         }
     }
-    if (note.type === "note-todo") {
+    if (note.type === "note-todos") {
         const str = note.txt.split(' ')
         console.log(str[0])
         return {
             id: note.id,
-            type: "note-todo",
+            type: "note-todos",
             info: {
                 label: "TODOS",
                 todos: [{ txt: str[0], doneAt: new Date() },
@@ -170,17 +171,17 @@ function _createNote(txt, type, title) {
             }
         }
     }
-    if (type === "note-todo") {
-        // const str = txt.split(' ')
+    if (type === "note-todos") {
+        const str = txt.split(' ')
         console.log(str[0])
         return {
             id: utilService.makeId(),
-            type: "note-todo",
+            type: "note-todos",
             info: {
                 label: title,
-                todos: [{ txt, doneAt: new Date() },
-                { txt, doneAt: new Date() },
-                { txt, doneAt: new Date() }]
+                todos: [{ txt: str[0], doneAt: new Date() },
+                { txt: str[1], doneAt: new Date() },
+                { txt: str[2], doneAt: new Date() }]
             },
             style: {
                 backgroundColor: "white"

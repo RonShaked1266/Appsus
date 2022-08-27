@@ -18,7 +18,6 @@ export function NotePreview({ note, isPalette }) {
         }
     }
     return <article>
-        {/* {note.type === 'note-txt' && <h4>{note.info.txt}</h4>} */}
         {/* <h4>{note.id}</h4> */}
         <DynamicCmp
             note={note} />
@@ -26,7 +25,6 @@ export function NotePreview({ note, isPalette }) {
     </article>
 
 }
-
 
 function NoteTxt({ note }) {
     return <section>
@@ -51,16 +49,17 @@ function NoteVideo({ note }) {
 export class NoteTodos extends React.Component {
     render() {
         const { note } = this.props
+        console.log(note)
         return <section>
             <h4>{note.info.label}</h4>
             <ul>
                 {
-                    note.info.todos.map(todo =>
-                        <li className="flex space-between note-todos" key={todo.doneAt}>
+                    note.info.todos.map((todo, idx) =>
+                        <li className="flex space-between note-todos" key={idx}>
                             <div>{todo.txt}
                                 <br></br>Done at: {todo.doneAt}
                             </div>
-                            <button onClick={() => onRemoveTodo(todo)}>✖</button>
+                            {/* <button onClick={() => onRemoveTodo(todo)}>✖</button> */}
                         </li>)
                 }
             </ul>

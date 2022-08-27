@@ -2,7 +2,7 @@ export class NoteFilter extends React.Component {
 
     state = {
         filterBy: {
-            name: '',
+            // name: '',
             type: '',
 
         },
@@ -35,6 +35,7 @@ export class NoteFilter extends React.Component {
     render() {
         const { name, type } = this.state.filterBy
         const {handleChange, onFilter } = this
+        // console.log(type)
         return <section className="note-filter">
             <form className="flex space-between main-input" onSubmit={onFilter}>
                 <input

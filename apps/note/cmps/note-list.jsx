@@ -9,23 +9,23 @@ export function NoteList({ notes, onRemoveNote, onSetPalette, isPalette }) {
             {
                 notes.map(note =>
                     <li key={note.id}>
+                        <Link to={`/note/edit/${note.id}`}>
                             <div className={note.style.backgroundColor} >
                                 <div className="flex space-between note-preview">
-                        <Link to={`/note/edit/${note.id}`}>
                                     <NotePreview note={note} isPalette={isPalette} />
-                                </Link>
-                                <div className="btns">
-                                    <button className="pin"><img src="assets/icons/pin.svg" /></button>
-                                    <button onClick={() => onRemoveNote(note.id)}><img src="assets/icons/trash.png" /></button>
+                                    <div className="btns">
+                                        <button className="pin"><img src="assets/icons/pin.svg" /></button>
+                                        {/* <button onClick={() => onRemoveNote(note.id)}><img src="assets/icons/trash.png" /></button>
                                     <button><img src="assets/icons/img.svg" /></button>
                                     <button><img src="assets/icons/contact.svg" /></button>
                                     <button onClick={() => onSetPalette(note.id)}><img src="assets/icons/paint-board.svg" /></button>
                                     <button><img src="assets/icons/v.svg" /></button>
-                                    {isPalette && <ColorPalette />}
-                                    {/* <NoteEdit note={note} onRemoveNote={onRemoveNote} onSetPalette={onSetPalette}/> */}
+                                {isPalette && <ColorPalette />} */}
+                                        {/* <NoteEdit note={note} onRemoveNote={onRemoveNote} onSetPalette={onSetPalette}/> */}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     </li>)
             }
         </ul>

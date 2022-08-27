@@ -78,8 +78,10 @@ export class NoteIndex extends React.Component {
     }
 
     onSetFilter = (filterBy) => {
+        console.log(filterBy)
         this.setState({ filterBy }, () => {
             this.loadNotes()
+            // console.log(this.state.filterBy)
         })
     }
 
