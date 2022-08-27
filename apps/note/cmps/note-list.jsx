@@ -1,7 +1,6 @@
 import { NotePreview } from './note-preview.jsx'
 import { ColorPalette } from './color-palette.jsx'
 const { Link } = ReactRouterDOM
-// import { NoteEdit } from './note-edit.jsx'
 
 export function NoteList({ notes, onRemoveNote, onSetPalette, isPalette }) {
 
@@ -9,10 +8,12 @@ export function NoteList({ notes, onRemoveNote, onSetPalette, isPalette }) {
         <ul>
             {
                 notes.map(note =>
-                    <li className={note.style.backgroundColor} key={note.id}>
+                    <li key={note.id}>
+                            <div className={note.style.backgroundColor} >
+                                <div className="flex space-between note-preview">
                         <Link to={`/note/edit/${note.id}`}>
-                            <div className="flex space-between note-preview">
-                                <NotePreview note={note} isPalette={isPalette} />
+                                    <NotePreview note={note} isPalette={isPalette} />
+                                </Link>
                                 <div className="btns">
                                     <button className="pin"><img src="assets/icons/pin.svg" /></button>
                                     <button onClick={() => onRemoveNote(note.id)}><img src="assets/icons/trash.png" /></button>
@@ -24,7 +25,7 @@ export function NoteList({ notes, onRemoveNote, onSetPalette, isPalette }) {
                                     {/* <NoteEdit note={note} onRemoveNote={onRemoveNote} onSetPalette={onSetPalette}/> */}
                                 </div>
                             </div>
-                        </Link>
+                        </div>
                     </li>)
             }
         </ul>

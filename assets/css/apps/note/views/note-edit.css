@@ -62,7 +62,7 @@
 }
 
 .blue {
-    background-color: lightblue;
+    background-color: rgb(203, 236, 247);
     border-radius: 10px;
 }
 .green {
@@ -78,7 +78,7 @@
     border-radius: 10px;
 }
 .orange {
-    background-color: lightsalmon;
+    background-color: rgb(254, 213, 198);
     border-radius: 10px;
 }
 .purple {

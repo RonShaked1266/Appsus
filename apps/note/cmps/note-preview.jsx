@@ -18,13 +18,13 @@ export function NotePreview({ note, isPalette }) {
         }
     }
     return <article>
-            {/* {note.type === 'note-txt' && <h4>{note.info.txt}</h4>} */}
-            {/* <h4>{note.id}</h4> */}
-            <DynamicCmp
-                note={note} />
-            {/* { (isPalette && note.id) && <ColorPalette />} */}
-        </article>
-    
+        {/* {note.type === 'note-txt' && <h4>{note.info.txt}</h4>} */}
+        {/* <h4>{note.id}</h4> */}
+        <DynamicCmp
+            note={note} />
+        {/* { (isPalette && note.id) && <ColorPalette />} */}
+    </article>
+
 }
 
 
@@ -47,6 +47,7 @@ function NoteVideo({ note }) {
         </div>
     </section>
 }
+
 export class NoteTodos extends React.Component {
     render() {
         const { note } = this.props

@@ -35,7 +35,6 @@ export class NoteEdit extends React.Component {
 
     onGoBack = () => {
         this.props.history.push('/note')
-        // console.log(this.state)
     }
 
     onRemoveNote = (noteId) => {
@@ -56,15 +55,21 @@ export class NoteEdit extends React.Component {
             })
     }
 
+    // onUpdateTxt = (ev) => {
+    //     ev.preventDefault()
+    //     const { note, isBounce } = this.state
+    //     noteService.updateNote(note)
+    //         .then((noteToUpdate) => {
+    //             console.log('update!')})}
+
     onUpdateNote = (ev) => {
         ev.preventDefault()
         const { note, isBounce } = this.state
-
-        // console.log(note)
         noteService.updateNote(note)
             .then((noteToUpdate) => {
                 console.log('update!')
                 this.setState({ note: noteToUpdate, isBounce: true })
+                // this.onGoBack()
                 showSuccessMsg('note update')
                 setTimeout(() => {
                     this.setState({ isBounce: false })
@@ -108,12 +113,6 @@ export class NoteEdit extends React.Component {
             },
             isPalette: false
         })
-        , () => {
-            noteService.updateNote(this.state.note)
-            .then((noteToUpdate) => {
-                console.log('update!') 
-            })
-        }
         )
     }
 
@@ -139,11 +138,10 @@ export class NoteEdit extends React.Component {
     render() {
         const { note, isPalette } = this.state
         const { txt } = this.state.note
-        const { DynamicCmp, onRemoveNote, onSetPalette, handleChange, onUpdateNote, onGoBack, onSetColor, goImg } = this
-        // console.log(this.state)
+        const { DynamicCmp, onUpdateTxt, onRemoveNote, onSetPalette, handleChange, onUpdateNote, onGoBack, onSetColor, goImg } = this
         return <section className="note-edit">
             < h1 > edit</h1 >
-            <form className="flex space-between main-input" onSubmit={onUpdateNote}>
+            <form className="flex space-between main-input" onSubmit={onUpdateNote} >
                 <input
                     ref={this.inputRef}
                     type="text"
@@ -171,7 +169,6 @@ export class NoteEdit extends React.Component {
                         <button htmlFor="img" onClick={goImg}><img src="assets/icons/img.svg" /></button>
                         {/* <button><img src="assets/icons/img.svg" /></button> */}
                         <button><img src="assets/icons/contact.svg" /></button>
-                        {/* <button onClick={() => onSetColor(note)}><img src="assets/icons/paint-board.svg" /></button> */}
                         <button onClick={onSetPalette}><img src="assets/icons/paint-board.svg" /></button>
                         <button onClick={onGoBack}><img src="assets/icons/v.svg" /></button>
                         {isPalette && <ColorPalette onSetColor={onSetColor} />}
@@ -190,8 +187,8 @@ function NoteTxt({ note }) {
 
 function NoteImg({ note }) {
     return <section>
-        <h4>{note.info.title}</h4>
-        <img src={note.info.url} />
+        <h4>{note.txt}</h4>
+        <img src={note.txt} />
     </section>
 }
 

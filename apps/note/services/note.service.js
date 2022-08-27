@@ -13,12 +13,22 @@ export const noteService = {
 let gNotes
 const KEY = 'notesDB'
 
-function query() {
+function query(filterBy) {
     let notes = _loadFromStorage()
     if (!notes) {
         notes = gNotes
         _saveToStorage(notes)
     }
+
+    if (filterBy) {
+        let { name, type } = filterBy
+        console.log('filterBy from service', filterBy);
+        notes = notes.filter(note => (
+            note.type.toLowerCase().includes(type.toLowerCase())          
+            // && note.type.toLowerCase().includes(type.toLowerCase())          
+        ))
+    }
+
     return Promise.resolve(notes)
 }
 
@@ -41,9 +51,9 @@ function remove(noteId) {
     return Promise.resolve()
 }
 
-function addNote({ txt, type }) {
+function addNote({ txt, type, title }) {
     let notes = _loadFromStorage()
-    const newNote = _createNote(txt, type)
+    const newNote = _createNote(txt, type, title)
     notes = [newNote, ...notes]
     _saveToStorage(notes)
     return Promise.resolve(newNote)
@@ -120,7 +130,7 @@ function _update(note) {
     }
 
 }
-function _createNote(txt, type) {
+function _createNote(txt, type, title) {
     if (type === "note-txt") {
         return {
             id: utilService.makeId(),
@@ -130,7 +140,7 @@ function _createNote(txt, type) {
                 txt
             },
             style: {
-                backgroundColor: "blue"
+                backgroundColor: "white"
             }
         }
     }
@@ -140,10 +150,10 @@ function _createNote(txt, type) {
             type: "note-img",
             info: {
                 url: txt,
-                title: "IMG"
+                title
             },
             style: {
-                backgroundColor: "#00d"
+                backgroundColor: "white"
             }
         }
     }
@@ -153,10 +163,10 @@ function _createNote(txt, type) {
             type: "note-video",
             info: {
                 url: txt,
-                title: "Video Play"
+                title
             },
             style: {
-                backgroundColor: "#00d"
+                backgroundColor: "white"
             }
         }
     }
@@ -167,13 +177,13 @@ function _createNote(txt, type) {
             id: utilService.makeId(),
             type: "note-todo",
             info: {
-                label: "TODOS",
+                label: title,
                 todos: [{ txt, doneAt: new Date() },
                 { txt, doneAt: new Date() },
                 { txt, doneAt: new Date() }]
             },
             style: {
-                backgroundColor: "#00d"
+                backgroundColor: "white"
             }
         }
     }
@@ -199,7 +209,7 @@ gNotes = [
             txt: "Fullstack Me Baby!"
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor: "white"
         }
     },
     {
@@ -210,7 +220,7 @@ gNotes = [
             title: "My Dog"
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor: "yellow"
         }
     },
     {
@@ -221,7 +231,7 @@ gNotes = [
             title: "Video play"
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor: "white"
         }
     },
     {
@@ -233,7 +243,7 @@ gNotes = [
             { txt: "Coding power", doneAt: 187111111 }]
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor: "blue"
         }
     },
     {
@@ -245,7 +255,18 @@ gNotes = [
             { txt: "Coding power", doneAt: 187111111 }]
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor: "yellow"
         }
-    }
+    },
+    {
+        id: "n106",
+        type: "note-img",
+        info: {
+            url: "https://picsum.photos/seed/picsum/200/300",
+            title: "Switzerland"
+        },
+        style: {
+            backgroundColor: "purple"
+        }
+    },
 ];

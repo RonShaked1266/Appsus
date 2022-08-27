@@ -27,11 +27,11 @@
     padding-inline-end: 5px;
 }
 
-/* .note-preview .color-palette {
+.note-preview .color-palette {
     position: absolute;
     bottom: 25px;
     z-index: 10;
-} */
+}
 
 .video-play iframe {
     position: relative; 
