@@ -77,13 +77,18 @@ export class NoteIndex extends React.Component {
             })}
     }
 
+    // onSetFilter = (filterBy) => {
+    //     // console.log(filterBy)
+    //     this.setState({ filterBy }, this.loadNotes())
+       
+    // }
     onSetFilter = (filterBy) => {
         // console.log(filterBy)
         this.setState({ filterBy }, () => {
             //   setTimeout(() => {
                 this.loadNotes()
                 // }, 1000)
-            // console.log(this.state.filterBy)
+            console.log(this.state.filterBy)
         })
     }
 
