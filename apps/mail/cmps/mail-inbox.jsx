@@ -15,8 +15,6 @@ export function MailInbox({ onAddMail, onToggleModal, onRemoveMail, mails, isMod
     // console.log('mails:', mails)
     // console.log('isModalOpened:', isModalOpened)
     return <section className="app">
-        {isModalOpened && <MailCreate onAddMail={onAddMail} />}
-        <button className="btn-add-mail" onClick={onToggleModal}>Create New Mail</button>
         {mails.length ? <MailList mails={mails} onRemoveMail={onRemoveMail} /> : <div>No Mails</div>}
         {/*onOpenMail={onOpenMail}*/}
     </section>

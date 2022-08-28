@@ -8,6 +8,19 @@ function loadFromDemo() {
     return [
         {
             id: utilService.makeId(),
+            subject: 'Some Interesting Information',
+            body: `Greece, the southernmost of the countries of the Balkan Peninsula. Geography has greatly influenced the country's development. 
+            
+            Mountains historically restricted internal communications, but the sea opened up wider horizons. 
+            
+            The total land area of Greece (one-fifth of which is made up of the Greek islands) is comparable in size to England or the U.S. state of Alabama.`,
+            isRead: true,
+            sentAt: new Date('August 28, 2022 01:46:30'),
+            to: 'Mikey@mail.com',
+            from: 'Ariel Ron'
+        },
+        {
+            id: utilService.makeId(),
             subject: 'We noticed a new sign in to your Dropbox',
             body: `Hi ArielRon, 
 
