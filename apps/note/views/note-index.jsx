@@ -23,20 +23,20 @@ export class NoteIndex extends React.Component {
 
     onRemoveTodo = (todo) => {
         noteService.removeTodo(todo)
-        .then(() => {
+            .then(() => {
 
-            console.log('Removed!')
-        })
+                console.log('Removed!')
+            })
 
     }
 
     onSetPalette = (noteId) => {
         // const note = this.state.notes.find(note => note.id === noteId)  
-        noteService.getById(noteId)   
+        noteService.getById(noteId)
             .then((note) => {
                 console.log(noteId)
                 this.setState({ isPalette: true })
-            })      
+            })
     }
 
     onRemoveNote = (noteId) => {
@@ -60,34 +60,35 @@ export class NoteIndex extends React.Component {
     onAddNote = (note) => {
         console.log(note)
         if (note.txt !== '') {
-        noteService.addNote(note)
-            .then((newNote) => {
-                console.log('add!')
-                const notes = [newNote, ...this.state.notes]
-                this.setState({ notes, isBounce: true })
-                showSuccessMsg('note add')
-                setTimeout(() => {
-                    this.setState({ isBounce: false })
-                }, 500)
+            noteService.addNote(note)
+                .then((newNote) => {
+                    console.log('add!')
+                    const notes = [newNote, ...this.state.notes]
+                    this.setState({ notes, isBounce: true })
+                    showSuccessMsg('note add')
+                    setTimeout(() => {
+                        this.setState({ isBounce: false })
+                    }, 500)
 
-            })
-            .catch(err => {
-                console.log('Problem!!', err)
-                showErrorMsg('Cannot add note')
-            })}
+                })
+                .catch(err => {
+                    console.log('Problem!!', err)
+                    showErrorMsg('Cannot add note')
+                })
+        }
     }
 
     // onSetFilter = (filterBy) => {
     //     // console.log(filterBy)
     //     this.setState({ filterBy }, this.loadNotes())
-       
+
     // }
     onSetFilter = (filterBy) => {
         // console.log(filterBy)
         this.setState({ filterBy }, () => {
             //   setTimeout(() => {
-                this.loadNotes()
-                // }, 1000)
+            this.loadNotes()
+            // }, 1000)
             console.log(this.state.filterBy)
         })
     }
@@ -99,8 +100,8 @@ export class NoteIndex extends React.Component {
             <section className="note-index">
                 {/* <div>note app</div> */}
                 <NoteFilter onSetFilter={onSetFilter} />
-                <NoteAdd onAddNote={onAddNote}/>
-                <NoteList notes={notes} onRemoveNote={onRemoveNote} onSetPalette={onSetPalette} isPalette={isPalette}/>
+                <NoteAdd onAddNote={onAddNote} />
+                <NoteList notes={notes} onRemoveNote={onRemoveNote} onSetPalette={onSetPalette} isPalette={isPalette} />
             </section>
         )
     }
