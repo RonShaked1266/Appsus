@@ -39,18 +39,17 @@ function query(filterBy) {
         _saveToStorage(mails)
     }
 
-
     if (filterBy) {
         const { status, txt, isRead, isStared, lables } = filterBy
         console.log('status:', status)
         console.log('gLoggedinUser.email:', gLoggedinUser.email)
         mails.forEach(mail => {
-            console.log('status === \'inbox\' && mail.to === gLoggedinUser.email:', status === 'inbox' && mail.to === gLoggedinUser.email)
+            console.log(`status === 'inbox' && mail.to === gLoggedinUser.email:`, status === 'inbox' && mail.to === gLoggedinUser.email)
         })
         mails = mails.filter(mail => (
             mail.body.includes(txt) ||
             mail.subject.includes(txt) ||
-            mail.to.includes(txt) &&
+            mail.from.includes(txt) &&
             // show messages in inbox that were sent just to the logged in user!
             status === 'inbox' && mail.to === gLoggedinUser.email
         ))
@@ -97,7 +96,7 @@ function addMail({ subject, body, to }) {
     return Promise.resolve(mail)
 }
 
-// function updateMail(id, subject, body, isRead, to, from) {
+// function updateMail({id, subject, body, isRead, to, from}) {
 //     const mails = _loadFromStorage()
 //     let mail = mails.find(mail => id === mail.id)
 //     mail.subject = subject

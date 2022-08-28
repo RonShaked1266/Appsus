@@ -45,11 +45,11 @@ export class MailIndex extends React.Component {
 
 	onAddMail = (subject, to, body) => {
 		event.preventDefault()
-		const { onToggleModal } = this
+		const { onToggleModal, onSetFilter } = this
 		const { mails, isModalOpened } = this.state
 		// TODO: send an object to addMail function and change it in service, also change create
 		// Immediatly Close modal!
-		mailService.addMail({subject, to, body})
+		mailService.addMail({ subject, to, body })
 			.then(addedMail => this.setState(prevState => ({
 				...prevState,
 				mails: [addedMail, ...mails],
@@ -69,18 +69,20 @@ export class MailIndex extends React.Component {
 	}
 
 	onSetFilter = (filterBy) => {
-        this.setState({ filterBy }, this.loadMails)
-    }
+		this.setState({ filterBy }, this.loadMails)
+	}
 
 	render() {
 		const { onRemoveMail, onAddMail, onToggleModal, onSetFilter } = this
 		{/*onOpenMail, */ }
 		const { mails, isModalOpened } = this.state
 		return <Router>
-			<MailFilter onSetFilter={onSetFilter}/>
+			<MailFilter onSetFilter={onSetFilter} />
+			{isModalOpened && <MailCreate onAddMail={onAddMail} />}
+			<button className="btn-add-mail" onClick={onToggleModal}>Create New Mail</button>
 			<Switch>
 				<Route path="/mail/:mailId" component={MailDetails} />
-				<Route path="/mail" component={() => <MailInbox onAddMail={onAddMail} onToggleModal={onToggleModal} onRemoveMail={onRemoveMail} mails={mails} isModalOpened={isModalOpened}/>}/>
+				<Route path="/mail" component={() => <MailInbox onAddMail={onAddMail} onToggleModal={onToggleModal} onRemoveMail={onRemoveMail} mails={mails} isModalOpened={isModalOpened} />} />
 				{/* <section className="app main-layout">
 					{isModalOpened && <MailCreate onAddMail={onAddMail} />}
 					<button className="btn-add-mail" onClick={onToggleModal}>Create New Mail</button>
